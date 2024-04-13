@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class InteractionComponent : MonoBehaviour
 {
-    public float interactionRadius_ = 10.0f;
-    public bool showInteractionRadius = false;
+    [SerializeField]
+    float interactionRadius_ = 10.0f;
+    [SerializeField]
+    bool showInteractionRadius_ = false;
+    [SerializeField]
+    LayerMask interactionMask_;
 
     public void OnInteract()
     {
         
-        RaycastHit2D hit = Physics2D.CircleCast(transform.position, interactionRadius_, transform.forward, 0.0f);
+        RaycastHit2D hit = Physics2D.CircleCast(transform.position, interactionRadius_, transform.forward, 0.0f, interactionMask_);
         
         if(hit)
         {
@@ -22,7 +26,7 @@ public class InteractionComponent : MonoBehaviour
 
     public void Update()
     {
-        if(showInteractionRadius) DrawCircle(transform.position, interactionRadius_, 32, Color.red);
+        if(showInteractionRadius_) DrawCircle(transform.position, interactionRadius_, 32, Color.red);
     }
 
 

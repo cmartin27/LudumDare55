@@ -5,9 +5,11 @@ using UnityEngine;
 public class DialogueManager : MonoBehaviour
 {
     [SerializeField]
-    private float linePrintDuration;    
+    private float dialogueAppearDuration_;
     [SerializeField]
-    private float maxCooldownBetweenChars;
+    private float linePrintDuration_;    
+    [SerializeField]
+    private float maxCooldownBetweenChars_;
     [SerializeField]
     private List<DialogueEntry> dialogues_;
 
@@ -18,8 +20,7 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(NPCComponent npc, int dialogId, EQuestState questState)
     {
-        // TODO: change player input
-        // ...
+        GameManager.Instance.SetInputMode(EInputMode.Dialogue);
 
         DialogueEntry entry = dialogues_[dialogId];
         string dialog = "";
@@ -42,10 +43,7 @@ public class DialogueManager : MonoBehaviour
         npc_ = npc;
         currentDialogue_ = dialog.Split('\n');
         currentDialogueLine_ = 0;
-        npc_.ShowDialogueBox();
-
-        // TODO: Show dialogue bubble and start animation for first line
-        ShowDialogueLine(currentDialogue_[currentDialogueLine_]);
+        StartCoroutine(ShowDialogueBubble());
     }
 
     public void OnNextLine()
@@ -55,15 +53,14 @@ public class DialogueManager : MonoBehaviour
         {
             EndDialogue();
         }
-        else
+        else // show next dialog line
         {
             string currentLine = currentDialogue_[currentDialogueLine_];
             ShowDialogueLine(currentLine);
-
-            // TODO: Start animation for next line
         }
     }
 
+    // Starts the coroutine to show a dialogue line
     private void ShowDialogueLine(string line)
     {
         Debug.Log(line);
@@ -71,12 +68,10 @@ public class DialogueManager : MonoBehaviour
         StartCoroutine(DisplayLine());
     }
 
+    // Ends the dialogue, returns input to player
     private void EndDialogue()
     {
-        Debug.Log("Finished dialog!");
-        // TODO: Remove dialogue bubble
-        npc_.HideDialogueBox();
-        // TODO: Return input to player
+        StartCoroutine(HideDialogueBubble());
     }
 
     private void Update()
@@ -86,16 +81,58 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    // Displays the dialogue bubble of the npc, increasing its width over a period of time
+    IEnumerator ShowDialogueBubble()
+    {
+        npc_.ShowDialogueBox();
+
+        const int nIncrements = 100;
+        float dialogueBoxWidth = npc_.dialogueBoxWidth_;
+        float widthIncrement = dialogueBoxWidth / (float)nIncrements;
+        float timeIncrement = dialogueAppearDuration_ / (float)nIncrements;
+
+        for(int i = 0; i < nIncrements; ++i)
+        {
+            npc_.IncrementDialogueWidth(widthIncrement);
+            yield return new WaitForSeconds(timeIncrement);
+        }
+
+        npc_.RestoreDialogWidth();
+        ShowDialogueLine(currentDialogue_[currentDialogueLine_]);
+    }
+
+    // Hides the dialogue bubble of the npc, reducing its width over a period of time
+
+    IEnumerator HideDialogueBubble()
+    {
+        npc_.SetDialogueText("");
+
+        const int nIncrements = 100;
+        float dialogueBoxWidth = npc_.dialogueBoxWidth_;
+        float widthIncrement = dialogueBoxWidth / (float)nIncrements;
+        float timeIncrement = dialogueAppearDuration_ / (float)nIncrements;
+
+        for (int i = 0; i < nIncrements; ++i)
+        {
+            npc_.IncrementDialogueWidth(-widthIncrement);
+            yield return new WaitForSeconds(timeIncrement);
+        }
+
+        npc_.HideDialogueBox();
+        GameManager.Instance.SetInputMode(EInputMode.InGame);
+    }
+
+    // Displays a line letter by letter over a period of time
     IEnumerator DisplayLine()
     {
         int nChars = currentLine_.Length;
-        float timeBetweenChars = Mathf.Min(linePrintDuration / nChars, maxCooldownBetweenChars);
+        float timeBetweenChars = Mathf.Min(linePrintDuration_ / nChars, maxCooldownBetweenChars_);
 
         string lineInConstruction = "";
         for(int i = 0; i < nChars; i++)
         {
             lineInConstruction += currentLine_[i];
-            npc_.SetDialogText(lineInConstruction);
+            npc_.SetDialogueText(lineInConstruction);
             yield return new WaitForSeconds(timeBetweenChars);
         }
     }

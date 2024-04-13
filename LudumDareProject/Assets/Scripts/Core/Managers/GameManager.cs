@@ -1,6 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+
+public enum EInputMode
+{
+    InGame,
+    Menu,
+    Dialogue
+}
 
 [RequireComponent(typeof(DialogueManager))]
 [RequireComponent(typeof(AudioManager))]
@@ -19,6 +27,8 @@ public class GameManager : MonoBehaviour
     public InventoryManager inventoryManager_;
     public QuestManager questManager_;
 
+    public GameObject player_;
+
     private void Awake()
     {
         instance_ = this;
@@ -30,5 +40,23 @@ public class GameManager : MonoBehaviour
         audioManager_ = GetComponent<AudioManager>();
         inventoryManager_ = GetComponent<InventoryManager>();
         questManager_ = GetComponent<QuestManager>();
+    }
+
+    public void SetInputMode(EInputMode mode)
+    {
+        PlayerInput playerInput = player_.GetComponent<PlayerInput>();
+        switch(mode)
+        {
+            case EInputMode.Menu:
+                playerInput.SwitchCurrentActionMap("Menu");
+                break;
+            case EInputMode.Dialogue:
+                playerInput.SwitchCurrentActionMap("Dialogue");
+                break;
+            case EInputMode.InGame:
+            default:
+                playerInput.SwitchCurrentActionMap("InGame");
+                break;
+        }
     }
 }

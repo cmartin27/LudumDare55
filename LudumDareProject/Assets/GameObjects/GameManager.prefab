@@ -48,6 +48,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a979c3329c9321a43a610f3a02c79379, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogueManager_: {fileID: 0}
+  audioManager_: {fileID: 0}
+  inventoryManager_: {fileID: 0}
+  questManager_: {fileID: 0}
+  player_: {fileID: 0}
 --- !u!114 &3142450078862777838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60,6 +65,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49a4c9e7df101b44ba9271b7545a8e4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogueAppearDuration_: 0.6
+  linePrintDuration_: 1.5
+  maxCooldownBetweenChars_: 0.05
+  dialogues_:
+  - {fileID: 11400000, guid: 2baad10059c557f45b353724559ae5e5, type: 2}
 --- !u!114 &1075116181971007193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84,6 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 118080611ffec60478e97b8037caa4fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxSlots: 0
 --- !u!114 &2401848890876571418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,3 +107,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32a37376efebe66468a81aeb7bc3d451, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nQuests_: 10
+  questStates_: 

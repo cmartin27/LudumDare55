@@ -8,9 +8,6 @@ public class PlayerComponent : MonoBehaviour
 {
     private void Start()
     {
-    }
-
-    private void Update()
-    {
+        GameManager.Instance.player_ = gameObject;
     }
 }
