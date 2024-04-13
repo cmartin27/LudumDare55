@@ -14,8 +14,21 @@ public class GameManager : MonoBehaviour
         get { return instance_; }
     }
 
+    public DialogueManager dialogueManager_;
+    public AudioManager audioManager_;
+    public InventoryManager inventoryManager_;
+    public QuestManager questManager_;
+
     private void Awake()
     {
         instance_ = this;
+    }
+
+    private void Start()
+    {
+        dialogueManager_ = GetComponent<DialogueManager>();
+        audioManager_ = GetComponent<AudioManager>();
+        inventoryManager_ = GetComponent<InventoryManager>();
+        questManager_ = GetComponent<QuestManager>();
     }
 }
