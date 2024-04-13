@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae2fe2f7355e6cb4b9a73773c178a58a, type: 3}
+  m_Name: dialogueEntryTest
+  m_EditorClassIdentifier: 
+  questNotInitialized: 'Pedro, Pedro, Pedro, Pedro, Pe
+
+    Praticamente il meglio
+
+    Di
+    Santa Fe
+
+    Pedro, Pedro, Pedro, Pedro, Pe
+
+    Fidati di me'
+  questInProgress: 'I am a generic NPC.
+
+    My quest has started yet.
+
+    Do you
+    know already what I need?'
+  questAfterSummoning: 'I am a generic NPC.
+
+    You summoned just what I needed!
+
+    That
+    was so cool!'
+  questFinished: 'I am a generic NPC.
+
+    I don''t have more quests.
+
+    Thank
+    you young mage.'
