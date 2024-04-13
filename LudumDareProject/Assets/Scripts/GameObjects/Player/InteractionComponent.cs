@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class InteractionComponent : MonoBehaviour
 {
@@ -11,17 +12,18 @@ public class InteractionComponent : MonoBehaviour
     [SerializeField]
     LayerMask interactionMask_;
 
-    public void OnInteract()
+    public void OnInteract(InputAction.CallbackContext context)
     {
-        
-        RaycastHit2D hit = Physics2D.CircleCast(transform.position, interactionRadius_, transform.forward, 0.0f, interactionMask_);
-        
-        if(hit)
+        if(context.performed)
         {
-            IInteractable interactable = hit.transform.gameObject.GetComponent<IInteractable>();
-            if(interactable != null) interactable.Interact();
-        }
+            RaycastHit2D hit = Physics2D.CircleCast(transform.position, interactionRadius_, transform.forward, 0.0f, interactionMask_);
 
+            if (hit)
+            {
+                IInteractable interactable = hit.transform.gameObject.GetComponent<IInteractable>();
+                if (interactable != null) interactable.Interact();
+            }
+        }
     }
 
     public void Update()

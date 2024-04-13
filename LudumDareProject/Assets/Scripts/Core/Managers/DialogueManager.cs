@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -18,9 +19,30 @@ public class DialogueManager : MonoBehaviour
     private int currentDialogueLine_;
     private NPCComponent npc_;
 
+    [SerializeField]
+    private bool isDisplayingAnimation_;
+    [SerializeField]
+    private bool wantToCutAnimation_;
+
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+        if(context.performed)
+        {
+            if (!isDisplayingAnimation_)
+            {
+                ShowNextLine();
+            }
+            else
+            {
+                wantToCutAnimation_ = true;
+            }
+        }
+    }
+
     public void StartDialogue(NPCComponent npc, int dialogId, EQuestState questState)
     {
         GameManager.Instance.SetInputMode(EInputMode.Dialogue);
+        isDisplayingAnimation_ = false;
 
         DialogueEntry entry = dialogues_[dialogId];
         string dialog = "";
@@ -42,11 +64,11 @@ public class DialogueManager : MonoBehaviour
 
         npc_ = npc;
         currentDialogue_ = dialog.Split('\n');
-        currentDialogueLine_ = 0;
+        currentDialogueLine_ = -1;
         StartCoroutine(ShowDialogueBubble());
     }
 
-    public void OnNextLine()
+    public void ShowNextLine()
     {
         // finished dialogue, end dialogue
         if(++currentDialogueLine_ >= currentDialogue_.Length) 
@@ -63,7 +85,6 @@ public class DialogueManager : MonoBehaviour
     // Starts the coroutine to show a dialogue line
     private void ShowDialogueLine(string line)
     {
-        Debug.Log(line);
         currentLine_ = line;
         StartCoroutine(DisplayLine());
     }
@@ -74,18 +95,11 @@ public class DialogueManager : MonoBehaviour
         StartCoroutine(HideDialogueBubble());
     }
 
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.P)) {
-            OnNextLine();
-        }
-    }
-
     // Displays the dialogue bubble of the npc, increasing its width over a period of time
     IEnumerator ShowDialogueBubble()
     {
         npc_.ShowDialogueBox();
-
+        isDisplayingAnimation_ = true;
         const int nIncrements = 100;
         float dialogueBoxWidth = npc_.dialogueBoxWidth_;
         float widthIncrement = dialogueBoxWidth / (float)nIncrements;
@@ -93,12 +107,18 @@ public class DialogueManager : MonoBehaviour
 
         for(int i = 0; i < nIncrements; ++i)
         {
+            if(wantToCutAnimation_)
+            {
+                wantToCutAnimation_ = false;
+                break;
+            }
             npc_.IncrementDialogueWidth(widthIncrement);
             yield return new WaitForSeconds(timeIncrement);
         }
 
+        isDisplayingAnimation_ = false;
         npc_.RestoreDialogWidth();
-        ShowDialogueLine(currentDialogue_[currentDialogueLine_]);
+        ShowNextLine();
     }
 
     // Hides the dialogue bubble of the npc, reducing its width over a period of time
@@ -106,7 +126,7 @@ public class DialogueManager : MonoBehaviour
     IEnumerator HideDialogueBubble()
     {
         npc_.SetDialogueText("");
-
+        isDisplayingAnimation_ = true;
         const int nIncrements = 100;
         float dialogueBoxWidth = npc_.dialogueBoxWidth_;
         float widthIncrement = dialogueBoxWidth / (float)nIncrements;
@@ -114,10 +134,16 @@ public class DialogueManager : MonoBehaviour
 
         for (int i = 0; i < nIncrements; ++i)
         {
+            if (wantToCutAnimation_)
+            {
+                wantToCutAnimation_ = false;
+                break;
+            }
             npc_.IncrementDialogueWidth(-widthIncrement);
             yield return new WaitForSeconds(timeIncrement);
         }
 
+        isDisplayingAnimation_ = false;
         npc_.HideDialogueBox();
         GameManager.Instance.SetInputMode(EInputMode.InGame);
     }
@@ -127,13 +153,22 @@ public class DialogueManager : MonoBehaviour
     {
         int nChars = currentLine_.Length;
         float timeBetweenChars = Mathf.Min(linePrintDuration_ / nChars, maxCooldownBetweenChars_);
+        isDisplayingAnimation_ = true;
 
         string lineInConstruction = "";
         for(int i = 0; i < nChars; i++)
         {
+            if (wantToCutAnimation_)
+            {
+                npc_.SetDialogueText(currentLine_);
+                wantToCutAnimation_ = false;
+                break;
+            }
             lineInConstruction += currentLine_[i];
             npc_.SetDialogueText(lineInConstruction);
             yield return new WaitForSeconds(timeBetweenChars);
         }
+
+        isDisplayingAnimation_ = false;
     }
 }

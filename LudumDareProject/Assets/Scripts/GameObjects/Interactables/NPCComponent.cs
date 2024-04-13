@@ -13,14 +13,9 @@ public class NPCComponent : MonoBehaviour, IInteractable
     [SerializeField]
     private TMP_Text dialogueText_;
 
-    private bool isInDialog_;
-
     public void Interact()
     {
-        if (!isInDialog_)
-        {
-            StartDialog();
-        }
+        StartDialog();
     }
 
     public void ShowDialogueBox()
@@ -32,7 +27,6 @@ public class NPCComponent : MonoBehaviour, IInteractable
 
     public void HideDialogueBox()
     {
-        isInDialog_ = false;
         dialogueBox_.SetActive(false);
     }
 
@@ -58,7 +52,6 @@ public class NPCComponent : MonoBehaviour, IInteractable
 
     private void StartDialog()
     {
-        isInDialog_ = true;
         EQuestState questState = GameManager.Instance.questManager_.GetQuestStatus(id_);
         GameManager.Instance.dialogueManager_.StartDialogue(this, id_, questState);
     }
