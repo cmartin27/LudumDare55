@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ResourceComponent : MonoBehaviour, IInteractable
 {
-    public void Interact(PlayerComponent player)
+    public void Interact()
     {
         throw new System.NotImplementedException();
     }
