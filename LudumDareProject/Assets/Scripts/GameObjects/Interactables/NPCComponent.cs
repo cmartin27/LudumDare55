@@ -34,6 +34,12 @@ public class NPCComponent : MonoBehaviour, IInteractable
         dialogueText_.text = text;
     }
 
+    private void Start()
+    { 
+        dialogueBox_.enabled = false;
+        dialogueText_.enabled = false;
+    }
+
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.Space)) {

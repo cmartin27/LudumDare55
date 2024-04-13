@@ -12,12 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae2fe2f7355e6cb4b9a73773c178a58a, type: 3}
   m_Name: dialogueEntryTest
   m_EditorClassIdentifier: 
-  questNotInitialized: 'I am a generic NPC.
+  questNotInitialized: 'Pedro, Pedro, Pedro, Pedro, Pe
 
-    My quest is not initialized yet.
+    Praticamente il meglio
 
-    Please
-    summon something for me.'
+    Di
+    Santa Fe
+
+    Pedro, Pedro, Pedro, Pedro, Pe
+
+    Fidati di me'
   questInProgress: 'I am a generic NPC.
 
     My quest has started yet.
