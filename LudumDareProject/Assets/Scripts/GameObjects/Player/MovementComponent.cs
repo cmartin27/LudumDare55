@@ -4,25 +4,30 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Animator))]
 public class MovementComponent : MonoBehaviour
 {
 
-    public Rigidbody2D rb;
-public Animator animator;
-    public float movSpeed = 10.0f;
-    
+    Rigidbody2D rb_;
+    Animator animator_;
+    public float movSpeed_ = 5.0f;
+
+    private void Start()
+    {
+        rb_ = GetComponent<Rigidbody2D>();
+        animator_ = GetComponent<Animator>();
+    }
+
     public void OnMove(InputAction.CallbackContext context)
     {
-        Vector2 moveAmount = context.ReadValue<Vector2>() * movSpeed;
-        rb.velocity = moveAmount;
-        bool isMoving = rb.velocity.magnitude > 0.0f;
-        animator.SetBool("IsMoving", isMoving);
-        if (Mathf.Abs(rb.velocity.x) > 0.0f)
+        Vector2 moveAmount = context.ReadValue<Vector2>() * movSpeed_;
+        rb_.velocity = moveAmount;
+        bool isMoving = rb_.velocity.magnitude > 0.0f;
+        animator_.SetBool("IsMoving", isMoving);
+        if (Mathf.Abs(rb_.velocity.x) > 0.0f)
         { 
-            animator.SetFloat("Horizontal", moveAmount.x);
+            animator_.SetFloat("Horizontal", moveAmount.x);
         }
-
-
     }
 
 }
