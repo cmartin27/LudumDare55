@@ -9,8 +9,9 @@ public class DialogueManager : MonoBehaviour
 
     private string[] currentDialogue_;
     private int currentDialogueLine_;
+    private NPCComponent npc_;
 
-    public void StartDialogue(int dialogId, EQuestState questState)
+    public void StartDialogue(NPCComponent npc, int dialogId, EQuestState questState)
     {
         // TODO: change player input
         // ...
@@ -33,10 +34,13 @@ public class DialogueManager : MonoBehaviour
                 break;
         }
 
+        npc_ = npc;
         currentDialogue_ = dialog.Split('\n');
         currentDialogueLine_ = 0;
 
+        npc_.ShowDialogueBox();
         // TODO: Show dialogue bubble and start animation for first line
+        ShowDialogueLine(currentDialogue_[currentDialogueLine_]);
     }
 
     public void OnNextLine()
@@ -49,14 +53,30 @@ public class DialogueManager : MonoBehaviour
         else
         {
             string currentLine = currentDialogue_[currentDialogueLine_];
+            ShowDialogueLine(currentLine);
+
             // TODO: Start animation for next line
         }
     }
 
+    private void ShowDialogueLine(string line)
+    {
+        Debug.Log(line);
+        npc_.SetDialogText(line);
+    }
+
     private void EndDialogue()
     {
+        Debug.Log("Finished dialog!");
         // TODO: Remove dialogue bubble
-
+        npc_.HideDialogueBox();
         // TODO: Return input to player
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.P)) {
+            OnNextLine();
+        }
     }
 }

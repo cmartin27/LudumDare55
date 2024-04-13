@@ -12,7 +12,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae2fe2f7355e6cb4b9a73773c178a58a, type: 3}
   m_Name: dialogueEntryTest
   m_EditorClassIdentifier: 
-  questNotInitialized: 
-  questInProgress: 
-  questBeingFinished: 
-  questFinished: 
+  questNotInitialized: 'I am a generic NPC.
+
+    My quest is not initialized yet.
+
+    Please
+    summon something for me.'
+  questInProgress: 'I am a generic NPC.
+
+    My quest has started yet.
+
+    Do you
+    know already what I need?'
+  questAfterSummoning: 'I am a generic NPC.
+
+    You summoned just what I needed!
+
+    That
+    was so cool!'
+  questFinished: 'I am a generic NPC.
+
+    I don''t have more quests.
+
+    Thank
+    you young mage.'
