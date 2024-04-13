@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(DialogueManager))]
 [RequireComponent(typeof(AudioManager))]
 [RequireComponent(typeof(InventoryManager))]
-[RequireComponent(typeof(UIManager))]
+[RequireComponent(typeof(QuestManager))]
 public class GameManager : MonoBehaviour
 {
     private static GameManager instance_ = null;
