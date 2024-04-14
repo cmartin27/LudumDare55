@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     public QuestManager questManager_;
     public SummoningManager summoningManager_;
     public GameObject player_;
+    public GameObject mainCamera_;
 
     private void Awake()
     {
