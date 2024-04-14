@@ -38,11 +38,13 @@ public class SummoningManager : MonoBehaviour
 
     List<EResourceType> selectedResources_;
     QuestInfo currentQuest_;
+    ESummoningResult currentQuestResult_;
     int currentResources_;
 
     private void Start()
     {
         selectedResources_ = new List<EResourceType>();
+        summoningAnimationComp_.animationEnded_.AddListener(OnSummoningAnimationEnded);
     }
 
 
@@ -167,28 +169,30 @@ public class SummoningManager : MonoBehaviour
     public void MakeSummoning()
     {
         // check correct summoning ingredients
-        ESummoningResult result = CheckSummoningInfo();
+        currentQuestResult_ = CheckSummoningInfo();
 
-        if (result != ESummoningResult.Invalid)
+        if (currentQuestResult_ != ESummoningResult.Invalid)
         {
             summoningMenu_.SetActive(false);
-            //summoningAnimationComp_.StartSummoningAnimation(currentQuest_.summoningPosition_);
-
-            // TODO: do after animation is complete
-            if (result == ESummoningResult.Succesful)
-            {
-                GameManager.Instance.questManager_.QuestSuccessful();
-            }
-            else
-            {
-                GameManager.Instance.questManager_.QuestFailed();
-            }
-
+            summoningAnimationComp_.StartSummoningAnimation(currentQuest_.summoningPosition_);
             GameManager.Instance.inventoryManager_.Clear();
-            Clear();
         }
         else {
             // TODO: Print message saying that there is no summoning with those ingredients
+        }
+    }
+
+    void OnSummoningAnimationEnded() 
+    {
+        Clear();
+
+        if (currentQuestResult_ == ESummoningResult.Succesful)
+        {
+            GameManager.Instance.questManager_.QuestSuccessful();
+        }
+        else
+        {
+            GameManager.Instance.questManager_.QuestFailed();
         }
     }
 
@@ -202,7 +206,7 @@ public class SummoningManager : MonoBehaviour
         }
         else
         {
-            summoningAnimationComp_.GoBackAnimation(GetCurrentResource());
+            summoningAnimationComp_.GoBackAnimation(GetCurrentResourceId());
         }
     }
 
@@ -253,10 +257,18 @@ public class SummoningManager : MonoBehaviour
         return matchingSummonInfo == null ? ESummoningResult.Invalid :
             matchingSummonInfo.summoning_ == currentQuest_.summoningInfo_.summoning_ ? ESummoningResult.Succesful : ESummoningResult.Failed;
     }
-    public int GetCurrentResource()
+
+    public int GetCurrentResourceId()
     {
         return currentResources_ - 1;
 
+    }
+
+
+    public Sprite GetCurrentResourceSprite()
+    {
+        int resourceId = GetCurrentResourceId();
+        return GameManager.Instance.resourceManager_.GetResourceSprite(selectedResources_[resourceId]);
     }
 
 
@@ -265,5 +277,10 @@ public class SummoningManager : MonoBehaviour
         currentResources_ = 0;
         selectedResources_.Clear();
         currentQuest_ = null;
+    }
+
+    public GameObject GetSummonedObject()
+    {
+        return currentQuest_.summoningInfo_.summoning_;
     }
 }

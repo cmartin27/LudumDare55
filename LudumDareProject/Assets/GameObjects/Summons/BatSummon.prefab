@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3420583138258741060, guid: dc1429ea87c78454cacc108eeffc9617, type: 3}
       propertyPath: m_Name
-      value: BatSummon Variant
+      value: BatSummon
       objectReference: {fileID: 0}
     - target: {fileID: 6186301079922787766, guid: dc1429ea87c78454cacc108eeffc9617, type: 3}
       propertyPath: m_Sprite

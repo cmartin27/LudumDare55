@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2614551193373783170}
   - component: {fileID: 6186301079922787766}
   - component: {fileID: 2612349909708534856}
+  - component: {fileID: 3102388192030797849}
   m_Layer: 0
   m_Name: Summon
   m_TagString: Untagged
@@ -71,9 +72,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -1806555425
+  m_SortingLayer: 2
+  m_SortingOrder: 1
   m_Sprite: {fileID: -1691802947, guid: f4606077b49ff7145b37919a213a1c7c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -130,3 +131,53 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &3102388192030797849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3420583138258741060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b445a7b8a9a98d34da10b4dafe7e78a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeDuration_: 1.5
+  movingAnimationCurve_:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.37970072
+      value: 0.6152288
+      inSlope: 1.2405987
+      outSlope: 1.2405987
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0.002357483
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  movingAnimationDuration_: 0.8
+  movingDistance_: 0.8
+  isMovingAnimation_: 0
+  initialPosition_: {x: 0, y: 0, z: 0}

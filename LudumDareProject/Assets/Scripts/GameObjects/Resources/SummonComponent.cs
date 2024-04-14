@@ -15,19 +15,26 @@ public class SummonComponent : MonoBehaviour
 
     public Vector3 initialPosition_;
 
+
     // Start is called before the first frame update
     public void InitialSetup(Vector3 initialPosition)
     {
-        spriteRenderer_ = GetComponent<SpriteRenderer>();
+        if (!spriteRenderer_) spriteRenderer_ = GetComponent<SpriteRenderer>();
         initialPosition_ = initialPosition;
-        transform.position = initialPosition;
+        transform.localPosition = initialPosition;
         isMovingAnimation_ = false;
         StartCoroutine(ShowSprite());
     }
 
     public void SetSprite(Sprite image)
     {
+        if(!spriteRenderer_) spriteRenderer_ = GetComponent<SpriteRenderer>();
         spriteRenderer_.sprite = image;
+    }
+
+    public void DestroyObject()
+    {
+        StartCoroutine(HideSprite());
     }
 
     private IEnumerator ShowSprite()
@@ -57,10 +64,27 @@ public class SummonComponent : MonoBehaviour
             elapsedTime += Time.deltaTime;
             Vector3 newPosition = initialPosition_;
             newPosition.y += movingAnimationCurve_.Evaluate(elapsedTime / movingAnimationDuration_) * movingDistance_;
-            transform.position = newPosition;
+            transform.localPosition = newPosition;
             if (elapsedTime > movingAnimationDuration_) elapsedTime = 0.0f;
             yield return null;
         }
+    }
+
+    private IEnumerator HideSprite()
+    {
+        Color initialColor = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+        Color targetColor = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+
+        float elapsedTime = 0f;
+
+        while (elapsedTime < fadeDuration_)
+        {
+            elapsedTime += Time.deltaTime;
+            spriteRenderer_.color = Color.Lerp(initialColor, targetColor, elapsedTime / fadeDuration_);
+            yield return null;
+        }
+
+        Destroy(gameObject);
     }
 
 

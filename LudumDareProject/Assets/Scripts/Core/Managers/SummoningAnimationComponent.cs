@@ -36,20 +36,25 @@ public class SummoningAnimationComponent : MonoBehaviour
 
     [Header("Spawn")]
     public GameObject resourceObjectPrefab_;
-    public GameObject summonedObjectPrefab_;
     public List<Vector3> resourceSpawnPosition_;
     public Vector3 summonedObjectSpawnPosition_;
 
     [Header("End Animation")]
     public float finalAnimationDuration_;
+    public UnityEvent animationEnded_;
+
 
     bool isGoingBack_;
-    GameObject summonedObject_;
+    List<SummonComponent> resourcesObjects_;
+    SummonComponent summonedObject_;
     UnityEvent fadeInCompleted_;
     UnityEvent fadeOutCompleted_;
 
     public void Start()
     {
+        if (fadeInCompleted_ == null) fadeInCompleted_ = new UnityEvent();
+        if (fadeOutCompleted_ == null) fadeOutCompleted_ = new UnityEvent();
+        resourcesObjects_ = new List<SummonComponent>();
         GameManager.Instance.player_.GetComponent<MovementComponent>().pathCompleted_.AddListener(OnPathCompleted);
     }
 
@@ -84,7 +89,7 @@ public class SummoningAnimationComponent : MonoBehaviour
         GameManager.Instance.mainCamera_.SetActive(false);
         summoningCamera_.SetActive(true);
         GameManager.Instance.player_.transform.SetParent(positionOfReference_.transform);
-        GameManager.Instance.player_.transform.position = playerInitialPosition_;
+        GameManager.Instance.player_.transform.localPosition = playerInitialPosition_;
     }
 
     private IEnumerator FadeIn()
@@ -143,6 +148,14 @@ public class SummoningAnimationComponent : MonoBehaviour
 
     private IEnumerator HidCircle()
     {
+
+        foreach (var resource in resourcesObjects_)
+        {
+            resource.DestroyObject();
+
+        }
+        resourcesObjects_.Clear();
+
         Color initialColor = new Color(1.0f, 1.0f, 1.0f, 1.0f);
         Color targetColor = new Color(1.0f, 1.0f, 1.0f, 0.0f);
 
@@ -155,7 +168,12 @@ public class SummoningAnimationComponent : MonoBehaviour
             yield return null;
         }
 
+        yield return new WaitForSeconds(0.5f);
+
+        summonedObject_.DestroyObject();
+
         GameManager.Instance.SetInputMode(EInputMode.InGame);
+        animationEnded_.Invoke();
     }
 
     public void AddResourceAnimation(int resourceId)
@@ -180,22 +198,27 @@ public class SummoningAnimationComponent : MonoBehaviour
     {
         if (isGoingBack_) 
         {
-            summonedObject_ = Instantiate(summonedObjectPrefab_, positionOfReference_.transform);
-            summonedObject_.GetComponent<SummonComponent>().InitialSetup(summonedObjectSpawnPosition_);
+            GameObject summonedObjectPrefab = GameManager.Instance.summoningManager_.GetSummonedObject();
+            GameObject summonedObjectInstance = Instantiate(summonedObjectPrefab, positionOfReference_.transform);
+            summonedObject_ = summonedObjectInstance.GetComponent<SummonComponent>();
+            summonedObject_.InitialSetup(summonedObjectSpawnPosition_);
+            StartCoroutine(EndAnimation());
         }
         else
         {
             GameManager.Instance.SetInputMode(EInputMode.Summoning);
             GameObject resource = Instantiate(resourceObjectPrefab_, positionOfReference_.transform);
 
-            int resourceId = GameManager.Instance.summoningManager_.GetCurrentResource();
-            //resource.GetComponent<SummonComponent>().SetSprite();
-            resource.GetComponent<SummonComponent>().InitialSetup(resourceSpawnPosition_[resourceId]);
+            Sprite resourceSprite = GameManager.Instance.summoningManager_.GetCurrentResourceSprite();
+            SummonComponent resourceSummonComp = resource.GetComponent<SummonComponent>();
+            resourceSummonComp.SetSprite(resourceSprite);
+            resourceSummonComp.InitialSetup(resourceSpawnPosition_[GameManager.Instance.summoningManager_.GetCurrentResourceId()]);
+            resourcesObjects_.Add(resourceSummonComp);
         }
     }
 
 
-    IEnumerator EndAnimation(int resourceId)
+    IEnumerator EndAnimation()
     {
         yield return new WaitForSeconds(finalAnimationDuration_);
         fadeInCompleted_.AddListener(OnEndFadeInCompleted);

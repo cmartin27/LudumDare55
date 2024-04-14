@@ -22,6 +22,8 @@ public class MovementComponent : MonoBehaviour
     {
         rb_ = GetComponent<Rigidbody2D>();
         animator_ = GetComponent<Animator>();
+
+        if (pathCompleted_ == null) pathCompleted_ = new UnityEvent();
     }
 
     private void FixedUpdate()
@@ -45,7 +47,7 @@ public class MovementComponent : MonoBehaviour
 
     private void Move()
     {
-        Vector2 moveAmount =  direction_ * movSpeed_* Time.fixedDeltaTime;
+        Vector2 moveAmount =  direction_ * movSpeed_;
         rb_.velocity = moveAmount;
         if (Mathf.Abs(rb_.velocity.x) > 0.0f)
         {
@@ -84,10 +86,12 @@ public class MovementComponent : MonoBehaviour
         while (currentPointIndex < pathPoints.Count)
         {
             Vector2 targetPosition = pathPoints[currentPointIndex];
-            Vector2 currentPosition = rb_.position;
+            Vector2 currentPosition = transform.localPosition;
 
             // Move towards the target position
-            rb_.MovePosition(Vector2.MoveTowards(currentPosition, targetPosition, movSpeed_ * Time.fixedDeltaTime));
+            Vector2 direction = (targetPosition - currentPosition).normalized;
+
+            rb_.velocity = direction * movSpeed_ * 0.5f;
 
             if (Mathf.Abs(rb_.velocity.x) > 0.0f)
             {
@@ -104,6 +108,7 @@ public class MovementComponent : MonoBehaviour
                 if (currentPointIndex == pathPoints.Count)
                 {
                     animator_.SetBool("IsMoving", false);
+                    rb_.velocity = Vector2.zero;
                     pathCompleted_.Invoke();
                     yield break; // Exit the coroutine
                 }
