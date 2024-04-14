@@ -10,9 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ae2fe2f7355e6cb4b9a73773c178a58a, type: 3}
-  m_Name: dialogueEntryTest
+  m_Name: dialogueEntryTest 1
   m_EditorClassIdentifier: 
-  questNotInitialized: Pedro, Pedro, Pedro, Pedro, Pe
-  questInProgress: I am a generic NPC.
-  questAfterSummoning: I am a generic NPC.
-  questFinished: I am a generic NPC.
+  questNotInitialized_: "I\xB4m NPC2 giving you quest 1 for the first time.\nSummon
+    a flower."
+  questInProgress_: A flower s'il vous plait!
+  questAfterSuccess_: 'Oh... a rose... how pretty.
+
+    But I prefered a sunflower...'
+  questAfterFail_: THAT IS NO FLOWER YOU FOOL
+  questFinished_: "Thaks for the rose... \nI guess..."

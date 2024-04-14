@@ -4,8 +4,7 @@ using UnityEngine;
 using TMPro;
 public class NPCComponent : MonoBehaviour, IInteractable
 {
-    [SerializeField]
-    public int id_ {  get; private set; }
+    public int id_;
     public float dialogueBoxWidth_ { get; private set; }
 
     [SerializeField]

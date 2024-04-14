@@ -14,9 +14,9 @@ public class UISelectableResource : MonoBehaviour
     public Color selectedColor_;
     Color unselectedColor_;
 
-    public ResourceType resourceType_;
-    public UnityEvent<ResourceType> resourceSelected_;
-    public UnityEvent<ResourceType> resourceUnselected_;
+    public EResourceType EResourceType_;
+    public UnityEvent<EResourceType> resourceSelected_;
+    public UnityEvent<EResourceType> resourceUnselected_;
     bool selected_;
 
     void Start()
@@ -31,7 +31,7 @@ public class UISelectableResource : MonoBehaviour
         newColors.normalColor = selectedColor_;
         button_.colors = newColors;
 
-        resourceSelected_.Invoke(resourceType_);
+        resourceSelected_.Invoke(EResourceType_);
 
     }
 
@@ -41,7 +41,7 @@ public class UISelectableResource : MonoBehaviour
         newColors.normalColor = unselectedColor_;
         button_.colors = newColors;
 
-        resourceUnselected_.Invoke(resourceType_);
+        resourceUnselected_.Invoke(EResourceType_);
     }
 
     public void OnClickButton()

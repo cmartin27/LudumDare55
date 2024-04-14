@@ -271,6 +271,18 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5437915289248163960, guid: 89b4649e354fd9c48a46b1442eeb219c, type: 3}
+      propertyPath: m_UpdateMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5437915289248163960, guid: 89b4649e354fd9c48a46b1442eeb219c, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5480945159153216255, guid: 89b4649e354fd9c48a46b1442eeb219c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 5210626099523782029, guid: 89b4649e354fd9c48a46b1442eeb219c, type: 3}

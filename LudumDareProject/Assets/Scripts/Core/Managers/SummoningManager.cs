@@ -5,8 +5,17 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum ESummoningResult
+{
+    Succesful,  // the summoning was expected for the quest
+    Failed,     // the summoning was not expecte for the quest
+    Invalid     // there exist no summoning
+}
+
 public class SummoningManager : MonoBehaviour
 {
+    [Header("Summoning Info")]
+    public List<SummoningInfo> summonings_;
 
     [Header("Summoning Menu")]
     public GameObject summoningMenu_;
@@ -27,25 +36,25 @@ public class SummoningManager : MonoBehaviour
     public SummoningAnimationComponent summoningAnimationComp_;
 
 
-    List<ResourceType> selectedResources_;
-    int idQuest_;
+    List<EResourceType> selectedResources_;
+    QuestInfo currentQuest_;
     int currentResources_;
 
     private void Start()
     {
-        selectedResources_ = new List<ResourceType>();
+        selectedResources_ = new List<EResourceType>();
     }
 
 
-    public void EnableSummoningMenu(int idQuest)
+    public void EnableSummoningMenu(QuestInfo quest)
     {
-        idQuest_ = idQuest;
+        currentQuest_ = quest;
         summoningMenu_.SetActive(true);
         selectResourcesButton_.Select();
         ShowInventory();
     }
 
-    public void DisableSummoningMenu()
+    public void DissableSummoningMenu()
     { 
         summoningMenu_.SetActive(false);
         GameManager.Instance.SetInputMode(EInputMode.InGame);
@@ -82,7 +91,7 @@ public class SummoningManager : MonoBehaviour
             resourceUI.resourceSelected_.AddListener(SelectResource);
             resourceUI.resourceUnselected_.AddListener(UnselectResource);
             resourceUI.text_.text = "Resource " + resource.ToString();
-            resourceUI.resourceType_ = resource;
+            resourceUI.EResourceType_ = resource;
             resourceUI.transform.SetParent(resourcesList_.transform);
             resourcesUIList.Add(resourceUI); 
         }
@@ -106,17 +115,17 @@ public class SummoningManager : MonoBehaviour
 
     }
 
-    void SelectResource(ResourceType resourceType)
+    void SelectResource(EResourceType EResourceType)
     {
-        selectedResources_.Add(resourceType);
+        selectedResources_.Add(EResourceType);
         UpdateResourcesSelected(selectedResourcesList_);
         UpdateResourcesSelected(confirmResourcesList_);
 
     }
 
-    void UnselectResource(ResourceType resourceType)
+    void UnselectResource(EResourceType EResourceType)
     {
-        selectedResources_.Remove(resourceType);
+        selectedResources_.Remove(EResourceType);
         UpdateResourcesSelected(selectedResourcesList_);
         UpdateResourcesSelected(confirmResourcesList_);
     }
@@ -158,9 +167,29 @@ public class SummoningManager : MonoBehaviour
     public void MakeSummoning()
     {
         // check correct summoning ingredients
-        summoningMenu_.SetActive(false);
-        summoningAnimationComp_.StartSummoningAnimation(GameManager.Instance.questManager_.GetQuestPosition(idQuest_));
-        currentResources_ = 0;
+        ESummoningResult result = CheckSummoningInfo();
+
+        if (result != ESummoningResult.Invalid)
+        {
+            summoningMenu_.SetActive(false);
+            //summoningAnimationComp_.StartSummoningAnimation(currentQuest_.summoningPosition_);
+
+            // TODO: do after animation is complete
+            if (result == ESummoningResult.Succesful)
+            {
+                GameManager.Instance.questManager_.QuestSuccessful();
+            }
+            else
+            {
+                GameManager.Instance.questManager_.QuestFailed();
+            }
+
+            GameManager.Instance.inventoryManager_.Clear();
+            Clear();
+        }
+        else {
+            // TODO: Print message saying that there is no summoning with those ingredients
+        }
     }
 
     public void AddResource()
@@ -173,10 +202,57 @@ public class SummoningManager : MonoBehaviour
         }
         else
         {
-            summoningAnimationComp_.GoBackAnimation(currentResources_ -1);
+            summoningAnimationComp_.GoBackAnimation(GetCurrentResource());
         }
     }
 
+    private ESummoningResult CheckSummoningInfo()
+    {
+        // Create a dictionary with the resources gathered
+        Dictionary<EResourceType, uint> resourceCount = new Dictionary<EResourceType, uint>();
+        foreach(EResourceType resource in selectedResources_) 
+        {
+            if(resourceCount.ContainsKey(resource))
+            {
+                resourceCount[resource] += 1;
+            }
+            else
+            {
+                resourceCount[resource] = 1;
+            }
+        }
+
+        SummoningInfo matchingSummonInfo = null;
+        // for each summoning recipe
+        // TODO: SUMMONING RECIPES SHOULD NOT BE OBTAINED FROM THE QUESTS, THEY SHOULD BE STORED SOMEWHERE ELSE
+        for(int i = 0; i < summonings_.Count; ++i) 
+        {
+            SummoningInfo summoningInfo = summonings_[i];
+            List<EResourceType> resourcesInSummoning = summoningInfo.resources_;
+            List<uint> amountsInSummoning = summoningInfo.resourceAmounts_;
+            bool matchFound = true;
+            for (int j = 0; j < resourcesInSummoning.Count && matchFound; ++j)
+            {
+                EResourceType resource = resourcesInSummoning[j];
+                uint amountInSummoning = amountsInSummoning[j];
+                resourceCount.TryGetValue(resource, out uint currentAmount);
+
+                if (amountInSummoning != currentAmount)
+                {
+                    matchFound = false;
+                }
+            }
+
+            if(matchFound)
+            {
+                matchingSummonInfo = summoningInfo;
+                break;
+            }
+        }
+        
+        return matchingSummonInfo == null ? ESummoningResult.Invalid :
+            matchingSummonInfo.summoning_ == currentQuest_.summoningInfo_.summoning_ ? ESummoningResult.Succesful : ESummoningResult.Failed;
+    }
     public int GetCurrentResource()
     {
         return currentResources_ - 1;
@@ -184,4 +260,10 @@ public class SummoningManager : MonoBehaviour
     }
 
 
+    private void Clear()
+    {
+        currentResources_ = 0;
+        selectedResources_.Clear();
+        currentQuest_ = null;
+    }
 }

@@ -77,8 +77,8 @@ public class InteractionComponent : MonoBehaviour
     
     public void OnDebugSummoningMenu(InputAction.CallbackContext context)
     {
-        //GameManager.Instance.summoningManager_.AddResource();
-        GameManager.Instance.summoningManager_.EnableSummoningMenu(0);
+
+        GameManager.Instance.summoningManager_.EnableSummoningMenu(GameManager.Instance.questManager_.GetQuest(0));
         GameManager.Instance.SetInputMode(EInputMode.UI);
     }
 

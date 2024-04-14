@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -8,25 +9,27 @@ public enum EQuestState
 {
     NotInitialized,
     InProgress,
-    AfterSummoning,
+    AfterSuccessfulAttempt,
+    AfterFailedAttempt,
     Finished
 }
 
 [Serializable]
 public class QuestInfo
 {
+    public int id_;
     public EQuestState state_;
     public Vector3 summoningPosition_;
+    public SummoningInfo summoningInfo_;
+    public DialogueEntry dialogueEntry_;
 }
 
 public class QuestManager : MonoBehaviour
 {
-    [SerializeField]
-    private int nQuests_;
-    [SerializeField]
-    private List<QuestInfo> quests_;
+    public List<QuestInfo> quests_;
 
     public int activeQuestId_ { get; private set; }
+    private NPCComponent activeNPC_;
 
     public QuestInfo GetQuest(int questId)
     {
@@ -53,7 +56,7 @@ public class QuestManager : MonoBehaviour
 
     public void FinishQuest(int questId) 
     {
-        if (quests_[questId].state_ == EQuestState.AfterSummoning)
+        if (quests_[questId].state_ == EQuestState.InProgress)
         {
             quests_[questId].state_ = EQuestState.Finished;
         }
@@ -68,14 +71,14 @@ public class QuestManager : MonoBehaviour
     public void ActivateQuest(NPCComponent npc)
     {
         activeQuestId_ = npc.id_;
+        activeNPC_ = npc;
         GameManager.Instance.SetInputMode(EInputMode.Dialogue);
-        EQuestState questState = GetQuestStatus(activeQuestId_);
-        GameManager.Instance.dialogueManager_.StartDialogue(npc, activeQuestId_, questState);
+        GameManager.Instance.dialogueManager_.StartDialogue(npc, quests_[activeQuestId_].dialogueEntry_, quests_[activeQuestId_].state_);
     }
 
     public void EndDialogue()
     {
-        GameManager.Instance.SetInputMode(EInputMode.InGame);
+         GameManager.Instance.SetInputMode(EInputMode.InGame);
         QuestInfo quest = GetQuest(activeQuestId_);
         switch (quest.state_)
         {
@@ -86,7 +89,11 @@ public class QuestManager : MonoBehaviour
                 GameManager.Instance.SetInputMode(EInputMode.Dialogue);
                 GameManager.Instance.player_.GetComponent<PlayerComponent>().ShowSummoningDialogue();
                 break;
-            case EQuestState.AfterSummoning:
+            case EQuestState.AfterSuccessfulAttempt:
+                quest.state_ = EQuestState.Finished;
+                break;
+            case EQuestState.AfterFailedAttempt:
+                quest.state_ = EQuestState.InProgress;
                 break;
             case EQuestState.Finished:
             default:
@@ -96,6 +103,20 @@ public class QuestManager : MonoBehaviour
 
     public void StartSummoning()
     {
-        GameManager.Instance.summoningManager_.EnableSummoningMenu(activeQuestId_);
+        GameManager.Instance.summoningManager_.EnableSummoningMenu(quests_[activeQuestId_]);
+    }
+
+    public void QuestSuccessful()
+    {
+        QuestInfo quest = GetQuest(activeQuestId_);
+        quest.state_ = EQuestState.AfterSuccessfulAttempt;
+        GameManager.Instance.dialogueManager_.StartDialogue(activeNPC_, quests_[activeQuestId_].dialogueEntry_, quest.state_);
+    }
+
+    public void QuestFailed()
+    {
+        QuestInfo quest = GetQuest(activeQuestId_);
+        quest.state_ = EQuestState.AfterFailedAttempt;
+        GameManager.Instance.dialogueManager_.StartDialogue(activeNPC_, quests_[activeQuestId_].dialogueEntry_, quest.state_);
     }
 }

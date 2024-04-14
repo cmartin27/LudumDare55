@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class ResourceComponent : MonoBehaviour, IInteractable
 {
-    public ResourceType type_;
+    public EResourceType type_;
 
     public void Interact()
     {

@@ -12,13 +12,12 @@ public class DialogueManager : MonoBehaviour
     private float linePrintDuration_;    
     [SerializeField]
     private float maxCooldownBetweenChars_;
-    [SerializeField]
-    private List<DialogueEntry> dialogues_;
 
     private string[] currentDialogue_;
     private string currentLine_;
     private int currentDialogueLine_;
     private NPCComponent npc_;
+    private DialogueEntry entry_;
 
     private bool inDialogue_;
     private bool isDisplayingAnimation_;
@@ -41,26 +40,28 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    public void StartDialogue(NPCComponent npc, int dialogId, EQuestState questState)
+    public void StartDialogue(NPCComponent npc, DialogueEntry dialogueEntry, EQuestState questState)
     {
         inDialogue_ = true;
         isDisplayingAnimation_ = false;
 
-        DialogueEntry entry = dialogues_[dialogId];
         string dialog = "";
         switch(questState) 
         {
             case EQuestState.NotInitialized:
-                dialog = entry.questNotInitialized;
+                dialog = dialogueEntry.questNotInitialized_;
                 break;
             case EQuestState.InProgress:
-                dialog = entry.questInProgress;
+                dialog = dialogueEntry.questInProgress_;
                 break;
-            case EQuestState.AfterSummoning:
-                dialog = entry.questAfterSummoning;
+            case EQuestState.AfterSuccessfulAttempt:
+                dialog = dialogueEntry.questAfterSuccess_;
+                break;
+            case EQuestState.AfterFailedAttempt:
+                dialog = dialogueEntry.questAfterFail_;
                 break;
             case EQuestState.Finished:
-                dialog = entry.questFinished;
+                dialog = dialogueEntry.questFinished_;
                 break;
         }
 
