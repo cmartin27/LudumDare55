@@ -24,38 +24,78 @@ public class QuestManager : MonoBehaviour
     [SerializeField]
     private int nQuests_;
     [SerializeField]
-    private List<QuestInfo> questStates_;
+    private List<QuestInfo> quests_;
+
+    public int activeQuestId_ { get; private set; }
+
+    public QuestInfo GetQuest(int questId)
+    {
+        return quests_[questId];
+    }
 
     public EQuestState GetQuestStatus(int questId)
     {
-        return questStates_[questId].state_;
+        return quests_[questId].state_;
     }
 
     public bool IsQuestInProgress(int questId)
     {
-        return questStates_[questId].state_ == EQuestState.InProgress;
+        return quests_[questId].state_ == EQuestState.InProgress;
     }
 
     public void StartQuest(int questId)
     {
-        if(questStates_[questId].state_ == EQuestState.NotInitialized)
+        if(quests_[questId].state_ == EQuestState.NotInitialized)
         {
-            questStates_[questId].state_ = EQuestState.InProgress;
+            quests_[questId].state_ = EQuestState.InProgress;
         }
     }
 
     public void FinishQuest(int questId) 
     {
-        if (questStates_[questId].state_ == EQuestState.AfterSummoning)
+        if (quests_[questId].state_ == EQuestState.AfterSummoning)
         {
-            questStates_[questId].state_ = EQuestState.Finished;
+            quests_[questId].state_ = EQuestState.Finished;
         }
     }
 
     public Vector3 GetQuestPosition(int questId)
     {
-        return questStates_[questId].summoningPosition_;
+        return quests_[questId].summoningPosition_;
 
     }
 
+    public void ActivateQuest(NPCComponent npc)
+    {
+        activeQuestId_ = npc.id_;
+        GameManager.Instance.SetInputMode(EInputMode.Dialogue);
+        EQuestState questState = GetQuestStatus(activeQuestId_);
+        GameManager.Instance.dialogueManager_.StartDialogue(npc, activeQuestId_, questState);
+    }
+
+    public void EndDialogue()
+    {
+        GameManager.Instance.SetInputMode(EInputMode.InGame);
+        QuestInfo quest = GetQuest(activeQuestId_);
+        switch (quest.state_)
+        {
+            case EQuestState.NotInitialized:
+                quest.state_ = EQuestState.InProgress;
+                break;
+            case EQuestState.InProgress:
+                GameManager.Instance.SetInputMode(EInputMode.Dialogue);
+                GameManager.Instance.player_.GetComponent<PlayerComponent>().ShowSummoningDialogue();
+                break;
+            case EQuestState.AfterSummoning:
+                break;
+            case EQuestState.Finished:
+            default:
+                break;
+        }
+    }
+
+    public void StartSummoning()
+    {
+        GameManager.Instance.summoningManager_.EnableSummoningMenu(activeQuestId_);
+    }
 }

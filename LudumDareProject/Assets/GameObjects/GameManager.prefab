@@ -49,7 +49,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a979c3329c9321a43a610f3a02c79379, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  summoningManager_: {fileID: 0}
   player_: {fileID: 0}
+  mainCamera_: {fileID: 0}
 --- !u!114 &3142450078862777838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79,6 +81,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c361c1d236ebf2f43ae4bf5808c137df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundEffects_: []
+  musicSongs_: []
+  musicAudioMixerGroup_: {fileID: 0}
+  effectsAudioMixerGroup_: {fileID: 0}
+  audioMixer_: {fileID: 0}
 --- !u!114 &7835166135452370562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,7 +113,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nQuests_: 10
-  questStates_: 
+  quests_:
+  - state_: 0
+    summoningPosition_: {x: 0, y: 0, z: 0}
 --- !u!114 &164645525447100682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,8 +128,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baf06fce2dd24874b96dbbb752645901, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resourceParents_:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  resourceParents_: []
   minAvailableResources_: 3

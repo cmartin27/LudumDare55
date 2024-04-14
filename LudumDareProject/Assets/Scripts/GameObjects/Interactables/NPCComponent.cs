@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 public class NPCComponent : MonoBehaviour, IInteractable
 {
+    [SerializeField]
     public int id_ {  get; private set; }
     public float dialogueBoxWidth_ { get; private set; }
 
@@ -14,8 +15,7 @@ public class NPCComponent : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        StartDialogue();
-        StartQuest();
+        GameManager.Instance.questManager_.ActivateQuest(this);
     }
 
     public void ShowDialogueBox()
@@ -50,11 +50,7 @@ public class NPCComponent : MonoBehaviour, IInteractable
         dialogueBoxWidth_ = dialogueBox_.transform.localScale.x;
     }
 
-    private void StartDialogue()
-    {
-        EQuestState questState = GameManager.Instance.questManager_.GetQuestStatus(id_);
-        GameManager.Instance.dialogueManager_.StartDialogue(this, id_, questState);
-    }
+
 
     private void SetDialogueWidth(float width)
     {

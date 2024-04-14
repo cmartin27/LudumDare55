@@ -24,9 +24,23 @@ public class PlayerComponent : MonoBehaviour
         summoningDialogue_.SetActive(true);
     }
 
+    public void HideSummoningDialogue()
+    {
+        summoningDialogue_.SetActive(false);
+    }
+
     private void Start()
     {
         GameManager.Instance.player_ = gameObject;
+    }
+
+    private void Update()
+    {
+        if(summoningDialogue_.activeSelf && Input.GetKeyDown(KeyCode.K))
+        {
+            HideSummoningDialogue();
+            GameManager.Instance.questManager_.StartSummoning();
+        }
     }
 
     private void StartSummoning()

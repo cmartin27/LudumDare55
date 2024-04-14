@@ -12,31 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae2fe2f7355e6cb4b9a73773c178a58a, type: 3}
   m_Name: dialogueEntryTest
   m_EditorClassIdentifier: 
-  questNotInitialized: 'Pedro, Pedro, Pedro, Pedro, Pe
-
-    Praticamente il meglio
-
-    Di
-    Santa Fe
-
-    Pedro, Pedro, Pedro, Pedro, Pe
-
-    Fidati di me'
-  questInProgress: 'I am a generic NPC.
-
-    My quest has started already.
-
-    Do
-    you have what I need?'
-  questAfterSummoning: 'I am a generic NPC.
-
-    You summoned just what I needed!
-
-    That
-    was so cool!'
-  questFinished: 'I am a generic NPC.
-
-    I don''t have more quests.
-
-    Thank
-    you young mage.'
+  questNotInitialized: Pedro, Pedro, Pedro, Pedro, Pe
+  questInProgress: I am a generic NPC.
+  questAfterSummoning: I am a generic NPC.
+  questFinished: I am a generic NPC.
