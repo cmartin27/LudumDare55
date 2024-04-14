@@ -164,7 +164,8 @@ public class SummoningManager : MonoBehaviour
 
     public void AddResource()
     {
-        if(currentResources_ < selectedResources_.Count)
+
+        if (currentResources_ < 5)
         {
             summoningAnimationComp_.AddResourceAnimation(currentResources_);
             currentResources_++;
