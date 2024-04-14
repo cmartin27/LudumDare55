@@ -74,4 +74,12 @@ public class InteractionComponent : MonoBehaviour
             Debug.DrawLine(lineStart, lineEnd, color);
         }
     }
+    
+    public void OnDebugSummoningMenu()
+    {
+
+        GameManager.Instance.summoningManager_.EnableSummoningMenu();
+        GameManager.Instance.SetInputMode(EInputMode.UI);
+    }
+
 }

@@ -6,8 +6,10 @@ using UnityEngine.InputSystem;
 public enum EInputMode
 {
     InGame,
-    Menu,
-    Dialogue
+    UI,
+    Dialogue,
+    Summoning
+    
 }
 
 [RequireComponent(typeof(DialogueManager))]
@@ -26,7 +28,7 @@ public class GameManager : MonoBehaviour
     public AudioManager audioManager_;
     public InventoryManager inventoryManager_;
     public QuestManager questManager_;
-
+    public SummoningManager summoningManager_;
     public GameObject player_;
 
     private void Awake()
@@ -40,6 +42,7 @@ public class GameManager : MonoBehaviour
         audioManager_ = GetComponent<AudioManager>();
         inventoryManager_ = GetComponent<InventoryManager>();
         questManager_ = GetComponent<QuestManager>();
+
     }
 
     public void SetInputMode(EInputMode mode)
@@ -47,8 +50,11 @@ public class GameManager : MonoBehaviour
         PlayerInput playerInput = player_.GetComponent<PlayerInput>();
         switch(mode)
         {
-            case EInputMode.Menu:
-                playerInput.SwitchCurrentActionMap("Menu");
+            case EInputMode.UI:
+                playerInput.SwitchCurrentActionMap("UI");
+                break;
+            case EInputMode.Summoning:
+                playerInput.SwitchCurrentActionMap("Summoning");
                 break;
             case EInputMode.Dialogue:
                 playerInput.SwitchCurrentActionMap("Dialogue");

@@ -27,7 +27,6 @@ public class ResourceComponent : MonoBehaviour, IInteractable
         {
             Debug.Log("full inventory message");
         }
-        // else, show full inventory message?
 
     }
 }
