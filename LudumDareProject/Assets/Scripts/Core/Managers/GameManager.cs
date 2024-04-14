@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
     public InventoryManager inventoryManager_ { get; private set; }
     public QuestManager questManager_ { get; private set; }
     public ResourceManager resourceManager_ { get; private set; }
-    public SummoningManager summoningManager_ { get; private set; }
+    public SummoningManager summoningManager_;
     public GameObject player_;
     public GameObject mainCamera_;
 
