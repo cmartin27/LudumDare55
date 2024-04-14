@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac552e9b681be494abbf870d5ad825e9, type: 3}
   m_Name: flowerSummonInfo
   m_EditorClassIdentifier: 
-  name_: Bat!
-  description_: Summons a bat!
-  resources_: 0000000001000000
-  resourceAmounts_: 0200000003000000
+  name_: Flower
+  description_: Summons a flower!
+  resources_: 000000000100000003000000
+  resourceAmounts_: 010000000200000002000000
   summoning_: {fileID: 2349110900400455711, guid: 51cd2b6d6eae3ee439e7d766152c85bb, type: 3}
