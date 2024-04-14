@@ -8,7 +8,7 @@ using UnityEngine;
 public class InventoryManager : MonoBehaviour
 {
     public int maxSlots;
-    List<ResourceType> resources;
+    public List<ResourceType> resources;
 
     public void Start()
     {

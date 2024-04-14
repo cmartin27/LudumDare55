@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     public AudioManager audioManager_;
     public InventoryManager inventoryManager_;
     public QuestManager questManager_;
+    public SummoningManager summoningManager_;
+
 
     private void Awake()
     {
@@ -30,5 +32,6 @@ public class GameManager : MonoBehaviour
         audioManager_ = GetComponent<AudioManager>();
         inventoryManager_ = GetComponent<InventoryManager>();
         questManager_ = GetComponent<QuestManager>();
+
     }
 }

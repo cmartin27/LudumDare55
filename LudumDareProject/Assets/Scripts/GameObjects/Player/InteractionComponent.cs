@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class InteractionComponent : MonoBehaviour
 {
     public float interactionRadius_ = 10.0f;
     public bool showInteractionRadius = false;
+
+    public PlayerInput playerInput_;
 
     public void OnInteract()
     {
@@ -68,4 +71,12 @@ public class InteractionComponent : MonoBehaviour
             Debug.DrawLine(lineStart, lineEnd, color);
         }
     }
+    
+    public void OnDebugSummoningMenu()
+    {
+        playerInput_.actions.FindActionMap("Default").Disable();
+        playerInput_.actions.FindActionMap("UI").Enable();
+        GameManager.Instance.summoningManager_.EnableSummoningMenu();
+    }
+
 }
