@@ -157,6 +157,7 @@ public class SummoningManager : MonoBehaviour
 
     public void MakeSummoning()
     {
+        // check correct summoning ingredients
         summoningMenu_.SetActive(false);
         summoningAnimationComp_.StartSummoningAnimation(GameManager.Instance.questManager_.GetQuestPosition(idQuest_));
         currentResources_ = 0;

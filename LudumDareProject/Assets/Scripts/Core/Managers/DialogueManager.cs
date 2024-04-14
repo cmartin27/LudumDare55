@@ -20,11 +20,14 @@ public class DialogueManager : MonoBehaviour
     private int currentDialogueLine_;
     private NPCComponent npc_;
 
+    private bool inDialogue_;
     private bool isDisplayingAnimation_;
     private bool wantToCutAnimation_;
 
     public void OnInteract(InputAction.CallbackContext context)
     {
+        if (!inDialogue_) return;
+
         if(context.performed)
         {
             if (!isDisplayingAnimation_)
@@ -40,7 +43,7 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(NPCComponent npc, int dialogId, EQuestState questState)
     {
-        GameManager.Instance.SetInputMode(EInputMode.Dialogue);
+        inDialogue_ = true;
         isDisplayingAnimation_ = false;
 
         DialogueEntry entry = dialogues_[dialogId];
@@ -76,6 +79,8 @@ public class DialogueManager : MonoBehaviour
 
         isDisplayingAnimation_ = false;
         wantToCutAnimation_ = false;
+        inDialogue_ = false;
+
     }
 
     private void ShowNextLine()
@@ -155,16 +160,8 @@ public class DialogueManager : MonoBehaviour
 
         isDisplayingAnimation_ = false;
         npc_.HideDialogueBox();
+        GameManager.Instance.questManager_.EndDialogue();
         Clean();
-
-        if(GameManager.Instance.questManager_.IsQuestInProgress(npc_.id_))
-        {
-            GameManager.Instance.player_.GetComponent<PlayerComponent>().ShowSummoningDialogue();
-        }
-        else
-        {
-            GameManager.Instance.SetInputMode(EInputMode.InGame);
-        }
     }
 
     // Displays a line letter by letter over a period of time
