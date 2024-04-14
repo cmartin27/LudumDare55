@@ -20,13 +20,23 @@ public class SummoningManager : MonoBehaviour
     public GameObject selectedResourcesList_;
     public GameObject selectedResourcePrefab_;
 
-
     [Header("Confirmation Menu")]
     public GameObject confirmResourcesList_;
 
 
-    List<ResourceType> selectedResources_;
+    [Header("Fade")]
+    public Image fadeSprite_;
+    public float fadeInDuration_;
+    public float fadeDuration_;
+    public float fadeOutDuration_;
 
+    [Header("Camera")]
+    public GameObject normalCamera_;
+    public GameObject summoningCamera_;
+
+
+
+    List<ResourceType> selectedResources_;
 
     private void Start()
     {
@@ -105,7 +115,7 @@ public class SummoningManager : MonoBehaviour
     {
         selectedResources_.Add(resourceType);
         UpdateResourcesSelected(selectedResourcesList_);
-        UpdateResourcesSelected(selectedResourcesList_);
+        UpdateResourcesSelected(confirmResourcesList_);
 
     }
 
@@ -113,12 +123,15 @@ public class SummoningManager : MonoBehaviour
     {
         selectedResources_.Remove(resourceType);
         UpdateResourcesSelected(selectedResourcesList_);
+        UpdateResourcesSelected(confirmResourcesList_);
     }
 
     void UpdateResourcesSelected(GameObject selectedResourcesList)
     {
         int currentChildren = selectedResourcesList.transform.childCount;
-        if(currentChildren < selectedResources_.Count)
+        int currentSelectedResources = selectedResources_.Count;
+
+        if (currentChildren < currentSelectedResources)
         {
             int neededResources = selectedResources_.Count - currentChildren;
             for (int i = 0; i < neededResources; ++i)
@@ -127,19 +140,23 @@ public class SummoningManager : MonoBehaviour
                 newResource.transform.SetParent(selectedResourcesList.transform, false);
             }
 
-        }else if(currentChildren > selectedResources_.Count)
+        }
+
+        for(int i = 0; i < currentSelectedResources; ++i)
         {
-            int removeResources = currentChildren - selectedResources_.Count;
-            for (int i = 0; i < removeResources; ++i)
+            string resourceName = "Resource " + selectedResources_[i].ToString();
+            selectedResourcesList.transform.GetChild(i).GetComponent<TMP_Text>().text = resourceName;
+        }
+
+
+        if (currentChildren > currentSelectedResources)
+        {
+            for (int i = currentSelectedResources; i < currentChildren; ++i)
             {
                 Destroy(selectedResourcesList.transform.GetChild(i).gameObject);
             }
         }
 
-        for(int i = 0; i < selectedResources_.Count; ++i)
-        {
-            selectedResourcesList.transform.GetChild(i).GetComponent<TMP_Text>().text = "Resource " + selectedResources_[i].ToString();
-        }
     }
 
 
@@ -147,7 +164,53 @@ public class SummoningManager : MonoBehaviour
     {
         Debug.Log("Start Summoning Animation");
         GameManager.Instance.SetInputMode(EInputMode.Summoning);
+        summoningMenu_.SetActive(false);
+        StartCoroutine(FadeIn());
+    }
 
+
+    private IEnumerator FadeIn()
+    {
+        Color initialColor = new Color(0.0f, 0.0f, 0.0f, 0.0f);
+        Color targetColor = new Color(0.0f, 0.0f, 0.0f, 1.0f);
+
+        float elapsedTime = 0f;
+
+        while (elapsedTime < fadeInDuration_)
+        {
+            elapsedTime += Time.deltaTime;
+            fadeSprite_.color = Color.Lerp(initialColor, targetColor, elapsedTime / fadeInDuration_);
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(fadeInDuration_);
+        EnableSummoningAnimation();
+        StartCoroutine(FadeOut());
+
+    }
+
+    public void EnableSummoningAnimation()
+    {
+        normalCamera_.SetActive(false);
+        summoningCamera_.SetActive(true);
+    }
+
+
+    private IEnumerator FadeOut()
+    {
+        Color initialColor = new Color(0.0f, 0.0f, 0.0f, 1.0f);
+        Color targetColor = new Color(0.0f, 0.0f, 0.0f, 0.0f);
+
+        float elapsedTime = 0f;
+
+        while (elapsedTime < fadeOutDuration_)
+        {
+            elapsedTime += Time.deltaTime;
+            fadeSprite_.color = Color.Lerp(initialColor, targetColor, elapsedTime / fadeOutDuration_);
+            yield return null;
+        }
+
+        // Start pentagram logic
     }
 
 }

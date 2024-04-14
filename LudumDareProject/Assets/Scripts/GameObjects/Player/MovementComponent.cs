@@ -22,6 +22,8 @@ public class MovementComponent : MonoBehaviour
     {
         Vector2 moveAmount = context.ReadValue<Vector2>() * movSpeed_;
         rb_.velocity = moveAmount;
+    
+        // Set animation control variables
         bool isMoving = rb_.velocity.magnitude > 0.0f;
         animator_.SetBool("IsMoving", isMoving);
         if (Mathf.Abs(rb_.velocity.x) > 0.0f)
