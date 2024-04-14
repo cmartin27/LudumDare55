@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1075116181971007193}
   - component: {fileID: 7835166135452370562}
   - component: {fileID: 2401848890876571418}
+  - component: {fileID: 164645525447100682}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -48,10 +49,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a979c3329c9321a43a610f3a02c79379, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueManager_: {fileID: 0}
-  audioManager_: {fileID: 0}
-  inventoryManager_: {fileID: 0}
-  questManager_: {fileID: 0}
   player_: {fileID: 0}
 --- !u!114 &3142450078862777838
 MonoBehaviour:
@@ -94,7 +91,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 118080611ffec60478e97b8037caa4fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSlots: 0
+  maxSlots: 5
+  resources: 
 --- !u!114 &2401848890876571418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,3 +107,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nQuests_: 10
   questStates_: 
+--- !u!114 &164645525447100682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5656099895704518654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baf06fce2dd24874b96dbbb752645901, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resourceParents_:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  minAvailableResources_: 3
