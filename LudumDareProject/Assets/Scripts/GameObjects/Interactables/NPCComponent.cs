@@ -4,52 +4,67 @@ using UnityEngine;
 using TMPro;
 public class NPCComponent : MonoBehaviour, IInteractable
 {
-    [SerializeField]
-    private int id_;
+    public int id_ {  get; private set; }
+    public float dialogueBoxWidth_ { get; private set; }
 
     [SerializeField]
-    private SpriteRenderer dialogueBox_;
+    private GameObject dialogueBox_;
     [SerializeField]
     private TMP_Text dialogueText_;
 
     public void Interact()
     {
-        StartDialog();
+        StartDialogue();
+        StartQuest();
     }
 
     public void ShowDialogueBox()
     {
-        dialogueBox_.enabled = true;
-        dialogueText_.enabled = true;
+        dialogueBox_.SetActive(true);
+        SetDialogueWidth(0);
+        SetDialogueText("");
     }
 
     public void HideDialogueBox()
     {
-        dialogueBox_.enabled = false;
-        dialogueText_.enabled = false;
+        dialogueBox_.SetActive(false);
     }
 
-    public void SetDialogText(string text)
+    public void SetDialogueText(string text)
     {
         dialogueText_.text = text;
     }
 
-    private void Start()
-    { 
-        dialogueBox_.enabled = false;
-        dialogueText_.enabled = false;
-    }
-
-    private void Update()
+    public void IncrementDialogueWidth(float increment)
     {
-        if(Input.GetKeyDown(KeyCode.Space)) {
-            StartDialog();
-        }
+        dialogueBox_.transform.localScale += new Vector3(increment, 0.0f, 0.0f);
     }
 
-    private void StartDialog()
+    public void RestoreDialogWidth() 
+    {
+        SetDialogueWidth(dialogueBoxWidth_);
+    }
+
+    private void Start()
+    {
+        dialogueBoxWidth_ = dialogueBox_.transform.localScale.x;
+    }
+
+    private void StartDialogue()
     {
         EQuestState questState = GameManager.Instance.questManager_.GetQuestStatus(id_);
         GameManager.Instance.dialogueManager_.StartDialogue(this, id_, questState);
+    }
+
+    private void SetDialogueWidth(float width)
+    {
+        Vector3 scale = dialogueBox_.transform.localScale;
+        scale.x = width;
+        dialogueBox_.transform.localScale = scale;
+    }
+
+    private void StartQuest()
+    {
+        GameManager.Instance.questManager_.StartQuest(id_);
     }
 }

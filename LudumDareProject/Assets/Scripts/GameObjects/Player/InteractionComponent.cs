@@ -5,27 +5,30 @@ using UnityEngine.InputSystem;
 
 public class InteractionComponent : MonoBehaviour
 {
-    public float interactionRadius_ = 10.0f;
-    public bool showInteractionRadius = false;
+    [SerializeField]
+    float interactionRadius_ = 10.0f;
+    [SerializeField]
+    bool showInteractionRadius_ = false;
+    [SerializeField]
+    LayerMask interactionMask_;
 
-    public PlayerInput playerInput_;
-
-    public void OnInteract()
+    public void OnInteract(InputAction.CallbackContext context)
     {
-        
-        RaycastHit2D hit = Physics2D.CircleCast(transform.position, interactionRadius_, transform.forward, 0.0f);
-        
-        if(hit)
+        if(context.performed)
         {
-            IInteractable interactable = hit.transform.gameObject.GetComponent<IInteractable>();
-            if(interactable != null) interactable.Interact();
-        }
+            RaycastHit2D hit = Physics2D.CircleCast(transform.position, interactionRadius_, transform.forward, 0.0f, interactionMask_);
 
+            if (hit)
+            {
+                IInteractable interactable = hit.transform.gameObject.GetComponent<IInteractable>();
+                if (interactable != null) interactable.Interact();
+            }
+        }
     }
 
     public void Update()
     {
-        if(showInteractionRadius) DrawCircle(transform.position, interactionRadius_, 32, Color.red);
+        if(showInteractionRadius_) DrawCircle(transform.position, interactionRadius_, 32, Color.red);
     }
 
 
@@ -74,9 +77,9 @@ public class InteractionComponent : MonoBehaviour
     
     public void OnDebugSummoningMenu()
     {
-        playerInput_.actions.FindActionMap("Default").Disable();
-        playerInput_.actions.FindActionMap("UI").Enable();
+
         GameManager.Instance.summoningManager_.EnableSummoningMenu();
+        GameManager.Instance.SetInputMode(EInputMode.UI);
     }
 
 }

@@ -24,10 +24,10 @@ MonoBehaviour:
     Fidati di me'
   questInProgress: 'I am a generic NPC.
 
-    My quest has started yet.
+    My quest has started already.
 
-    Do you
-    know already what I need?'
+    Do
+    you have what I need?'
   questAfterSummoning: 'I am a generic NPC.
 
     You summoned just what I needed!

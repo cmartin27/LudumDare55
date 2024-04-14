@@ -2,7 +2,7 @@
     "name": "PlayerInput",
     "maps": [
         {
-            "name": "Default",
+            "name": "InGame",
             "id": "94a14918-05b4-4b56-9f75-d2297e8941a0",
             "actions": [
                 {
@@ -92,7 +92,35 @@
                 {
                     "name": "",
                     "id": "d991b1d4-2718-453b-9307-778c8040879e",
-                    "path": "<Keyboard>/q",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Dialogue",
+            "id": "eda3110a-8f4e-43cf-b1ec-ae232fd4345d",
+            "actions": [
+                {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "d960b328-d913-4062-835b-724a6f66bf60",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "233bd461-53ed-47d6-a508-c14633f60b20",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

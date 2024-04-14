@@ -43,6 +43,7 @@ public class SummoningManager : MonoBehaviour
     public void DisableSummoningMenu()
     { 
         summoningMenu_.SetActive(false);
+        GameManager.Instance.SetInputMode(EInputMode.InGame);
     }
 
     public void EnableResourceSelection()
@@ -145,6 +146,8 @@ public class SummoningManager : MonoBehaviour
     public void MakeSummoning()
     {
         Debug.Log("Start Summoning Animation");
+        GameManager.Instance.SetInputMode(EInputMode.Summoning);
+
     }
 
 }
