@@ -99,6 +99,17 @@
                     "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ac0f2a19-ce12-48f6-b06a-94338836c2fd",
+                    "path": "<Keyboard>/l",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DebugSummoningMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -228,6 +239,34 @@
                     "processors": "",
                     "groups": "",
                     "action": "Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Summoning",
+            "id": "ed7865fb-cd48-427a-8b9d-8757b693c65a",
+            "actions": [
+                {
+                    "name": "Continue",
+                    "type": "Button",
+                    "id": "2243788b-ebac-48ac-9bc3-f1383f6ae4ea",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "63eb8732-bcb5-459e-8414-df242d108949",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Continue",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
