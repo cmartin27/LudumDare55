@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public enum ResourceType
+public enum EResourceType
 {
     Mushroom = 0,
     WaterBucket,
@@ -22,7 +22,7 @@ public class ResourceManager : MonoBehaviour
     [SerializeField]
     private int minAvailableResources_;
 
-    private Dictionary<ResourceType, List<ResourceComponent>> resources_;
+    private Dictionary<EResourceType, List<ResourceComponent>> resources_;
 
     public void PickResource(ResourceComponent resource)
     {
@@ -36,7 +36,7 @@ public class ResourceManager : MonoBehaviour
 
     private void Start()
     {
-        resources_ = new Dictionary<ResourceType, List<ResourceComponent>>();
+        resources_ = new Dictionary<EResourceType, List<ResourceComponent>>();
         foreach(GameObject parent in resourceParents_)
         {
             List<ResourceComponent> children = parent.GetComponentsInChildren<ResourceComponent>(includeInactive: true).ToList();

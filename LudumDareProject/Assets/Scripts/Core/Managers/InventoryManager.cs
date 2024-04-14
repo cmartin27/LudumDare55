@@ -8,14 +8,14 @@ using UnityEngine;
 public class InventoryManager : MonoBehaviour
 {
     public int maxSlots;
-    public List<ResourceType> resources;
+    public List<EResourceType> resources;
 
     public void Start()
     {
-        resources = new List<ResourceType>(maxSlots);
+        resources = new List<EResourceType>(maxSlots);
     }
 
-    public bool AddResource(ResourceType resource)
+    public bool AddResource(EResourceType resource)
     {
         if(resources.Count < maxSlots)
         {
@@ -26,10 +26,13 @@ public class InventoryManager : MonoBehaviour
         return false;
     }
 
-    public bool UseResource(ResourceType resource) 
+    public bool UseResource(EResourceType resource) 
     {
         return resources.Remove(resource);
     }
 
-
+    public void Clear()
+    { 
+        resources.Clear(); 
+    }
 }

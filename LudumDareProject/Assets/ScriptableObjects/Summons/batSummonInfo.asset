@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac552e9b681be494abbf870d5ad825e9, type: 3}
-  m_Name: debugSummon
+  m_Name: batSummonInfo
   m_EditorClassIdentifier: 
-  name_: This is a cool summon
-  description_: Show me what you summon!
+  name_: Bat!
+  description_: Summons a bat!
   resources_: 0000000003000000
-  amount_: 0300000002000000
-  summoning_: {fileID: 0}
+  resourceAmounts_: 0300000002000000
+  summoning_: {fileID: 1662632614670312692, guid: 2a3f8160189602a479c8744e4cf1a4c7, type: 3}

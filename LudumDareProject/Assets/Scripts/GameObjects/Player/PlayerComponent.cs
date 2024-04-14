@@ -36,10 +36,18 @@ public class PlayerComponent : MonoBehaviour
 
     private void Update()
     {
-        if(summoningDialogue_.activeSelf && Input.GetKeyDown(KeyCode.K))
+        if(summoningDialogue_.activeSelf)
         {
-            HideSummoningDialogue();
-            GameManager.Instance.questManager_.StartSummoning();
+            if(Input.GetKeyDown(KeyCode.K))
+            {
+                HideSummoningDialogue();
+                GameManager.Instance.questManager_.StartSummoning();
+            }
+            else if(Input.GetKeyDown(KeyCode.M))
+            {
+                HideSummoningDialogue();
+                GameManager.Instance.SetInputMode(EInputMode.InGame);
+            }
         }
     }
 

@@ -54,8 +54,11 @@ public class DialogueManager : MonoBehaviour
             case EQuestState.InProgress:
                 dialog = dialogueEntry.questInProgress_;
                 break;
-            case EQuestState.AfterSummoning:
-                dialog = dialogueEntry.questAfterSummoning_;
+            case EQuestState.AfterSuccessfulAttempt:
+                dialog = dialogueEntry.questAfterSuccess_;
+                break;
+            case EQuestState.AfterFailedAttempt:
+                dialog = dialogueEntry.questAfterFail_;
                 break;
             case EQuestState.Finished:
                 dialog = dialogueEntry.questFinished_;

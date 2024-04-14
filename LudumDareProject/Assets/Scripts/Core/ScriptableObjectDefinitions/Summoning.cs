@@ -7,7 +7,7 @@ public class SummoningInfo : ScriptableObject
 {
     public string name_;
     [TextArea(3, 6)] public string description_;
-    public List<ResourceType> resources_;
-    public List<uint> amount_;
+    public List<EResourceType> resources_;
+    public List<uint> resourceAmounts_;
     public GameObject summoning_;
 }
