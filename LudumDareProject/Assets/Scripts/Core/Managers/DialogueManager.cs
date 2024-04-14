@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -19,9 +20,7 @@ public class DialogueManager : MonoBehaviour
     private int currentDialogueLine_;
     private NPCComponent npc_;
 
-    [SerializeField]
     private bool isDisplayingAnimation_;
-    [SerializeField]
     private bool wantToCutAnimation_;
 
     public void OnInteract(InputAction.CallbackContext context)
@@ -68,7 +67,18 @@ public class DialogueManager : MonoBehaviour
         StartCoroutine(ShowDialogueBubble());
     }
 
-    public void ShowNextLine()
+    private void Clean()
+    {
+        currentDialogue_ = null;
+        currentLine_ = null;
+        currentDialogueLine_ = -1;
+        npc_ = null;
+
+        isDisplayingAnimation_ = false;
+        wantToCutAnimation_ = false;
+    }
+
+    private void ShowNextLine()
     {
         // finished dialogue, end dialogue
         if(++currentDialogueLine_ >= currentDialogue_.Length) 
@@ -145,7 +155,16 @@ public class DialogueManager : MonoBehaviour
 
         isDisplayingAnimation_ = false;
         npc_.HideDialogueBox();
-        GameManager.Instance.SetInputMode(EInputMode.InGame);
+        Clean();
+
+        if(GameManager.Instance.questManager_.IsQuestInProgress(npc_.id_))
+        {
+            GameManager.Instance.player_.GetComponent<PlayerComponent>().ShowSummoningDialogue();
+        }
+        else
+        {
+            GameManager.Instance.SetInputMode(EInputMode.InGame);
+        }
     }
 
     // Displays a line letter by letter over a period of time

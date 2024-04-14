@@ -21,14 +21,25 @@ public class QuestManager : MonoBehaviour
         return questStates_[questId];
     }
 
+    public bool IsQuestInProgress(int questId)
+    {
+        return questStates_[questId] == EQuestState.InProgress;
+    }
+
     public void StartQuest(int questId)
     {
-        questStates_[questId] = EQuestState.InProgress;
+        if(questStates_[questId] == EQuestState.NotInitialized)
+        {
+            questStates_[questId] = EQuestState.InProgress;
+        }
     }
 
     public void FinishQuest(int questId) 
     {
-        questStates_[questId] = EQuestState.Finished;
+        if (questStates_[questId] == EQuestState.AfterSummoning)
+        {
+            questStates_[questId] = EQuestState.Finished;
+        }
     }
 
     void Start()

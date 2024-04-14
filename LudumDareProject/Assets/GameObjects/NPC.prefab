@@ -27,10 +27,9 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 3903739720161325340}
+  m_Children: []
   m_Father: {fileID: 2767194883278150601}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2766429729470205976
@@ -115,12 +114,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6306375483346941222}
+  m_Father: {fileID: 2767194883278150601}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 10, y: 5}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2869080210491711848
 CanvasRenderer:
@@ -177,8 +176,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 0.2
-  m_fontSizeBase: 0.2
+  m_fontSize: 0.3
+  m_fontSizeBase: 0.3
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 1
@@ -213,7 +212,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0.21496677, y: 0.22248822, z: 0.23640203, w: 0.2270732}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -319,7 +318,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27dd96ec5c38b1146b1598de87d462f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id_: 0
   dialogueBox_: {fileID: 1169781528667737094}
   dialogueText_: {fileID: 5367900253555675157}
 --- !u!58 &8218934269941867791
@@ -416,12 +414,13 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6306375483346941222}
+  - {fileID: 3903739720161325340}
   m_Father: {fileID: 4382234831332262285}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 1}
-  m_SizeDelta: {x: 6, y: 1}
+  m_SizeDelta: {x: 7.5, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &2927600085221898859
 Canvas:
