@@ -10,7 +10,7 @@ public class SummoningManager : MonoBehaviour
 
     [Header("Summoning Menu")]
     public GameObject summoningMenu_;
-    public Button selectIngredientsButton_;
+    public Button selectResourcesButton_;
     public GameObject confirmSummoningMenu_;
 
     [Header("Resources Selection")]
@@ -23,20 +23,13 @@ public class SummoningManager : MonoBehaviour
     [Header("Confirmation Menu")]
     public GameObject confirmResourcesList_;
 
-
-    [Header("Fade")]
-    public Image fadeSprite_;
-    public float fadeInDuration_;
-    public float fadeDuration_;
-    public float fadeOutDuration_;
-
-    [Header("Camera")]
-    public GameObject normalCamera_;
-    public GameObject summoningCamera_;
-
+    [Header("Animation")]
+    public SummoningAnimationComponent summoningAnimationComp_;
 
 
     List<ResourceType> selectedResources_;
+    int idQuest_;
+    int currentResources_;
 
     private void Start()
     {
@@ -44,9 +37,11 @@ public class SummoningManager : MonoBehaviour
     }
 
 
-    public void EnableSummoningMenu()
+    public void EnableSummoningMenu(int idQuest)
     {
+        idQuest_ = idQuest;
         summoningMenu_.SetActive(true);
+        selectResourcesButton_.Select();
         ShowInventory();
     }
 
@@ -98,7 +93,7 @@ public class SummoningManager : MonoBehaviour
         {
             var navigation = resourcesUIList[i].button_.navigation;
 
-            navigation.selectOnLeft = selectIngredientsButton_;
+            navigation.selectOnLeft = selectResourcesButton_;
 
             int upButtonIdx = (i + resourcesCount - 1) % resourcesCount;
             navigation.selectOnUp = resourcesUIList[upButtonIdx].button_;
@@ -162,55 +157,23 @@ public class SummoningManager : MonoBehaviour
 
     public void MakeSummoning()
     {
-        Debug.Log("Start Summoning Animation");
-        GameManager.Instance.SetInputMode(EInputMode.Summoning);
         summoningMenu_.SetActive(false);
-        StartCoroutine(FadeIn());
+        summoningAnimationComp_.StartSummoningAnimation(GameManager.Instance.questManager_.GetQuestPosition(idQuest_));
+        currentResources_ = 0;
     }
 
-
-    private IEnumerator FadeIn()
+    public void AddResource()
     {
-        Color initialColor = new Color(0.0f, 0.0f, 0.0f, 0.0f);
-        Color targetColor = new Color(0.0f, 0.0f, 0.0f, 1.0f);
-
-        float elapsedTime = 0f;
-
-        while (elapsedTime < fadeInDuration_)
+        if(currentResources_ < selectedResources_.Count)
         {
-            elapsedTime += Time.deltaTime;
-            fadeSprite_.color = Color.Lerp(initialColor, targetColor, elapsedTime / fadeInDuration_);
-            yield return null;
+            summoningAnimationComp_.AddResourceAnimation(currentResources_);
+            currentResources_++;
         }
-
-        yield return new WaitForSeconds(fadeInDuration_);
-        EnableSummoningAnimation();
-        StartCoroutine(FadeOut());
-
-    }
-
-    public void EnableSummoningAnimation()
-    {
-        normalCamera_.SetActive(false);
-        summoningCamera_.SetActive(true);
-    }
-
-
-    private IEnumerator FadeOut()
-    {
-        Color initialColor = new Color(0.0f, 0.0f, 0.0f, 1.0f);
-        Color targetColor = new Color(0.0f, 0.0f, 0.0f, 0.0f);
-
-        float elapsedTime = 0f;
-
-        while (elapsedTime < fadeOutDuration_)
+        else
         {
-            elapsedTime += Time.deltaTime;
-            fadeSprite_.color = Color.Lerp(initialColor, targetColor, elapsedTime / fadeOutDuration_);
-            yield return null;
+            summoningAnimationComp_.GoBackAnimation(currentResources_);
         }
-
-        // Start pentagram logic
     }
+
 
 }

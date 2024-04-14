@@ -75,11 +75,16 @@ public class InteractionComponent : MonoBehaviour
         }
     }
     
-    public void OnDebugSummoningMenu()
+    public void OnDebugSummoningMenu(InputAction.CallbackContext context)
     {
 
-        GameManager.Instance.summoningManager_.EnableSummoningMenu();
+        GameManager.Instance.summoningManager_.EnableSummoningMenu(0);
         GameManager.Instance.SetInputMode(EInputMode.UI);
+    }
+
+    public void OnInteractSummoning(InputAction.CallbackContext context)
+    {
+        GameManager.Instance.summoningManager_.AddResource();
     }
 
 }

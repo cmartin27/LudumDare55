@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public enum EQuestState
 {
@@ -9,45 +11,51 @@ public enum EQuestState
     AfterSummoning,
     Finished
 }
+
+[Serializable]
+public class QuestInfo
+{
+    public EQuestState state_;
+    public Vector3 summoningPosition_;
+}
+
 public class QuestManager : MonoBehaviour
 {
     [SerializeField]
     private int nQuests_;
     [SerializeField]
-    private List<EQuestState> questStates_;
+    private List<QuestInfo> questStates_;
 
     public EQuestState GetQuestStatus(int questId)
     {
-        return questStates_[questId];
+        return questStates_[questId].state_;
     }
 
     public bool IsQuestInProgress(int questId)
     {
-        return questStates_[questId] == EQuestState.InProgress;
+        return questStates_[questId].state_ == EQuestState.InProgress;
     }
 
     public void StartQuest(int questId)
     {
-        if(questStates_[questId] == EQuestState.NotInitialized)
+        if(questStates_[questId].state_ == EQuestState.NotInitialized)
         {
-            questStates_[questId] = EQuestState.InProgress;
+            questStates_[questId].state_ = EQuestState.InProgress;
         }
     }
 
     public void FinishQuest(int questId) 
     {
-        if (questStates_[questId] == EQuestState.AfterSummoning)
+        if (questStates_[questId].state_ == EQuestState.AfterSummoning)
         {
-            questStates_[questId] = EQuestState.Finished;
+            questStates_[questId].state_ = EQuestState.Finished;
         }
     }
 
-    void Start()
+    public Vector3 GetQuestPosition(int questId)
     {
-        questStates_ = new List<EQuestState>();
-        for (int i = 0; i < nQuests_; ++i) 
-        {
-            questStates_.Add(EQuestState.NotInitialized);
-        }
+        return questStates_[questId].summoningPosition_;
+
     }
+
 }

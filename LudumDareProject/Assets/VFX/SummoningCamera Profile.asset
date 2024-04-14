@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3f6f3f7c722b4544b97e3c75840aa33, type: 3}
   m_Name: AutoExposure
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   enabled:
     overrideState: 1
     value: 1
@@ -96,22 +96,22 @@ MonoBehaviour:
     value: 0
   colorFilter:
     overrideState: 1
-    value: {r: 1.0689332, g: 0.9496563, b: 1.6918247, a: 1}
+    value: {r: 1.0689334, g: 0.9496564, b: 1.6918249, a: 1}
   hueShift:
     overrideState: 1
     value: 0
   saturation:
     overrideState: 1
-    value: 12.3
+    value: 34
   brightness:
     overrideState: 1
-    value: 0
+    value: -18
   postExposure:
     overrideState: 0
     value: 0
   contrast:
     overrideState: 1
-    value: 0
+    value: 8
   mixerRedOutRedIn:
     overrideState: 0
     value: 100
@@ -1427,25 +1427,25 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 14.85
+    value: 107
   threshold:
     overrideState: 1
-    value: 0.81
+    value: 1.26
   softKnee:
     overrideState: 0
     value: 0.5
   clamp:
     overrideState: 0
-    value: 65472
+    value: 2
   diffusion:
-    overrideState: 0
-    value: 7
+    overrideState: 1
+    value: 6.38
   anamorphicRatio:
-    overrideState: 0
-    value: 0
+    overrideState: 1
+    value: 0.03
   color:
     overrideState: 1
-    value: {r: 0.74685574, g: 0, b: 1, a: 1}
+    value: {r: 0.6745098, g: 0.4008989, b: 0.9339623, a: 1}
   fastMode:
     overrideState: 0
     value: 0
