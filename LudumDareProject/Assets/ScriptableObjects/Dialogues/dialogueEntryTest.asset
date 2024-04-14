@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae2fe2f7355e6cb4b9a73773c178a58a, type: 3}
   m_Name: dialogueEntryTest
   m_EditorClassIdentifier: 
-  questNotInitialized: Pedro, Pedro, Pedro, Pedro, Pe
-  questInProgress: I am a generic NPC.
-  questAfterSummoning: I am a generic NPC.
-  questFinished: I am a generic NPC.
+  questNotInitialized_: a
+  questInProgress_: b
+  questAfterSummoning_: c
+  questFinished_: d

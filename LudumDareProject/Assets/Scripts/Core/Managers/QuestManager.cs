@@ -17,6 +17,8 @@ public class QuestInfo
 {
     public EQuestState state_;
     public Vector3 summoningPosition_;
+    public SummoningInfo summoningInfo_;
+    public DialogueEntry dialogueEntry_;
 }
 
 public class QuestManager : MonoBehaviour
@@ -69,8 +71,7 @@ public class QuestManager : MonoBehaviour
     {
         activeQuestId_ = npc.id_;
         GameManager.Instance.SetInputMode(EInputMode.Dialogue);
-        EQuestState questState = GetQuestStatus(activeQuestId_);
-        GameManager.Instance.dialogueManager_.StartDialogue(npc, activeQuestId_, questState);
+        GameManager.Instance.dialogueManager_.StartDialogue(npc, quests_[activeQuestId_].dialogueEntry_, quests_[activeQuestId_].state_);
     }
 
     public void EndDialogue()
