@@ -187,6 +187,8 @@ public class SummoningManager : MonoBehaviour
     {
         Clear();
 
+        GameManager.Instance.SetInputMode(EInputMode.Dialogue);
+
         if (currentQuestResult_ == ESummoningResult.Succesful)
         {
             GameManager.Instance.questManager_.QuestSuccessful();

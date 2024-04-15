@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac552e9b681be494abbf870d5ad825e9, type: 3}
   m_Name: snowmanSummonInfo
   m_EditorClassIdentifier: 
-  name_: Bat!
+  name_: Snowman!
   description_: Summons a snowman!
   resources_: 010000000400000006000000
   resourceAmounts_: 020000000200000001000000

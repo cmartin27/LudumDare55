@@ -22,6 +22,7 @@ public class MovementComponent : MonoBehaviour
     {
         rb_ = GetComponent<Rigidbody2D>();
         animator_ = GetComponent<Animator>();
+        animator_.SetFloat("Horizontal", 1.0f);
 
         if (pathCompleted_ == null) pathCompleted_ = new UnityEvent();
     }

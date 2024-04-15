@@ -173,8 +173,6 @@ public class SummoningAnimationComponent : MonoBehaviour
         summonedObject_.DestroyObject();
 
         GameManager.Instance.EnableInput();
-        GameManager.Instance.SetInputMode(EInputMode.InGame);
-
         animationEnded_.Invoke();
     }
 
