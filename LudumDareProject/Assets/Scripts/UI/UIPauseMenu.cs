@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class UIPauseMenu : MonoBehaviour
@@ -30,7 +31,11 @@ public class UIPauseMenu : MonoBehaviour
         inventoryMenu_.CreateMenu(inventoryButton_);
 
         // Select cookbook
+        cookbookButton_.onClick.Invoke();
         cookbookButton_.Select();
+
+        //EventSystem.current.SetSelectedGameObject(cookbookButton_.gameObject);
+
 
         // Enable Pause Menu
         pauseMenu_.SetActive(true);

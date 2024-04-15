@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using static UnityEditor.Progress;
 
 // TODO: Create menu interface
 public class UIInventoryMenu : MonoBehaviour
@@ -14,51 +15,62 @@ public class UIInventoryMenu : MonoBehaviour
     public GameObject flushButton_;
 
     EResourceType selectedResource_;
+    Button inventoryButton_;
 
 
     public void CreateMenu(Button inventoryButton)
     {
+        inventoryButton_ = inventoryButton;
+
         // Clean previous list
         foreach (Transform child in resourcesList_.transform)
         {
             Destroy(child.gameObject);
         }
 
-        List<UISelectableResource> spawnedResources = new List<UISelectableResource>();
+        List<Button> spawnedResources = new List<Button>();
         var resourcesList = GameManager.Instance.inventoryManager_.resources;
-        
-        if (resourcesList.Count < 1) return;
-
 
         // Creates inventory elements 
-
         foreach (var resource in resourcesList)
         {
             GameObject newResource = GameObject.Instantiate(resourcePrefab_);
             UISelectableResource resourceUI = newResource.GetComponent<UISelectableResource>();
             resourceUI.resourceSelected_.AddListener(SelectResource);
+            resourceUI.sprite_.sprite = GameManager.Instance.resourceManager_.GetResourceSprite(resource);
             resourceUI.EResourceType_ = resource;
             resourceUI.transform.SetParent(resourcesList_.transform);
-            spawnedResources.Add(resourceUI);
+            spawnedResources.Add(newResource.GetComponent<Button>());
         }
+        SetButtonNavigation(spawnedResources);
+    }
 
+    public void SetButtonNavigation(List<Button> buttonsList)
+    {
+
+        int resourcesCount = buttonsList.Count;
+        if (resourcesCount < 1) return;
 
         // Set buttons navigation
-        int resourcesCount = spawnedResources.Count;
         for (int i = 0; i < resourcesCount - 1; ++i)
         {
-            var navigationRight = spawnedResources[i].button_.navigation;
-            navigationRight.selectOnRight = spawnedResources[i + 1].button_;
-            spawnedResources[i].button_.navigation = navigationRight;
+            Button currentResource = buttonsList[i];
+            Button nextResource = buttonsList[i + 1];
 
-            var navigationLeft = spawnedResources[i + 1].button_.navigation;
-            navigationLeft.selectOnLeft = spawnedResources[i].button_;
-            spawnedResources[i + 1].button_.navigation = navigationLeft;
+
+            var navigationRight = currentResource.navigation;
+            navigationRight.selectOnRight = nextResource;
+            currentResource.navigation = navigationRight;
+
+            var navigationLeft = nextResource.navigation;
+            navigationLeft.selectOnLeft = currentResource;
+            nextResource.navigation = navigationLeft;
         }
 
-        var navigation = spawnedResources[0].button_.navigation;
-        navigation.selectOnLeft = inventoryButton;
-        spawnedResources[0].button_.navigation = navigation;
+        var firstButton = buttonsList[0];
+        var firstButtonNavigation = firstButton.navigation;
+        firstButtonNavigation.selectOnLeft = inventoryButton_;
+        firstButton.navigation = firstButtonNavigation;
 
     }
 
@@ -73,18 +85,26 @@ public class UIInventoryMenu : MonoBehaviour
     public void RemoveResource()    
     {
         GameManager.Instance.inventoryManager_.UseResource(selectedResource_);
-        foreach (Transform child in resourcesList_.transform)
+        List<Button> newResourcesList = new List<Button>();
+        bool resourceRemoved = false;
+        for(int i = 0; i < resourcesList_.transform.childCount; ++i) 
         {
+            Transform child = resourcesList_.transform.GetChild(i);
             UISelectableResource resourceUI = child.GetComponent<UISelectableResource>();
-            if(resourceUI.EResourceType_ == selectedResource_)
+            if(resourceUI.EResourceType_ == selectedResource_ && !resourceRemoved)
             {
+                resourceRemoved = true;
                 Destroy(resourceUI.gameObject);
-                break;
+            }else 
+            {
+                Button resourceButton = child.GetComponent<Button>();
+                newResourcesList.Add(resourceButton);
             }
         }
 
+        SetButtonNavigation(newResourcesList);
         confirmationDialog_.SetActive(false);
-        OpenMenu();
+        newResourcesList[0].Select();
 
     }
 
@@ -101,12 +121,8 @@ public class UIInventoryMenu : MonoBehaviour
     {
         if(resourcesList_.transform.childCount < 1) return;
 
-        Transform firstResource = resourcesList_.transform.GetChild(0);
-        if(firstResource != null ) {
-            //Button button = firstResource.GetComponent<Button>();
-            EventSystem.current.SetSelectedGameObject(firstResource.gameObject);
-        }
-
+        resourcesList_.transform.GetChild(0).GetComponent<Button>().Select();
+        //EventSystem.current.SetSelectedGameObject(firstResource);
     }
 
 

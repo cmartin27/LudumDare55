@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class UISelectableResource : MonoBehaviour
 {
     public Button button_;
+    public Image sprite_;
     public bool setSelectedColor_ = true;
     public Color selectedColor_;
     Color unselectedColor_;
