@@ -67,8 +67,6 @@ MonoBehaviour:
   dialogueAppearDuration_: 0.4
   linePrintDuration_: 1.5
   maxCooldownBetweenChars_: 0.05
-  dialogues_:
-  - {fileID: 11400000, guid: 2baad10059c557f45b353724559ae5e5, type: 2}
 --- !u!114 &1075116181971007193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81,11 +79,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c361c1d236ebf2f43ae4bf5808c137df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isMusicOn_: 1
+  areSoundEffectsOn_: 0
   soundEffects_: []
-  musicSongs_: []
-  musicAudioMixerGroup_: {fileID: 0}
-  effectsAudioMixerGroup_: {fileID: 0}
-  audioMixer_: {fileID: 0}
+  musicSongs_:
+  - name: Song1
+    clip: {fileID: 8300000, guid: 55810eeba0be37346ab80de45fdf468f, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Song2
+    clip: {fileID: 8300000, guid: 88ec9764aa05e77449ad28ba8f99fd4a, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Song3
+    clip: {fileID: 8300000, guid: bc154990c54764b4d8fcd35ac853383f, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Song4
+    clip: {fileID: 8300000, guid: 4565910255bb0c342b589aca9dd6cf77, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  musicAudioMixerGroup_: {fileID: 3900645429204340487, guid: f3d1835d9542331419fd66a695022f07, type: 2}
+  effectsAudioMixerGroup_: {fileID: 8182392695714134180, guid: f3d1835d9542331419fd66a695022f07, type: 2}
+  audioMixer_: {fileID: 24100000, guid: f3d1835d9542331419fd66a695022f07, type: 2}
 --- !u!114 &7835166135452370562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,7 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 118080611ffec60478e97b8037caa4fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSlots: 5
+  maxSlots: 8
   resources: 
 --- !u!114 &2401848890876571418
 MonoBehaviour:
@@ -112,10 +136,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32a37376efebe66468a81aeb7bc3d451, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nQuests_: 10
   quests_:
-  - state_: 0
-    summoningPosition_: {x: 0, y: 0, z: 0}
+  - id_: 0
+    state_: 0
+    summoningPosition_: {x: -2, y: -4.94, z: -10}
+    summoningInfo_: {fileID: 11400000, guid: 06e2b037dd36ff74290fbe67c3f22616, type: 2}
+    dialogueEntry_: {fileID: 11400000, guid: 8c4b969ec0c519b48b196fd878df5e92, type: 2}
+  - id_: 1
+    state_: 0
+    summoningPosition_: {x: 15.86, y: -3.53, z: -10}
+    summoningInfo_: {fileID: 11400000, guid: eda4552898576804bb47244daf6c939c, type: 2}
+    dialogueEntry_: {fileID: 11400000, guid: a83f28fd1dc95c64295c5d2b4de172af, type: 2}
+  - id_: 2
+    state_: 0
+    summoningPosition_: {x: 36.23, y: -7.43, z: -10}
+    summoningInfo_: {fileID: 11400000, guid: 365fffbd1d70bc64aa4ead7702de840b, type: 2}
+    dialogueEntry_: {fileID: 11400000, guid: fa9c70e19d5a8b44eb08637e86254623, type: 2}
+  - id_: 3
+    state_: 0
+    summoningPosition_: {x: 9.76, y: 2.69, z: -10}
+    summoningInfo_: {fileID: 11400000, guid: 6eae7a51025eb41449679efbf5fc59ca, type: 2}
+    dialogueEntry_: {fileID: 11400000, guid: e526c903ddef095478d2f8c3a41c0db8, type: 2}
+  - id_: 4
+    state_: 0
+    summoningPosition_: {x: -7.87, y: 3.23, z: -10}
+    summoningInfo_: {fileID: 11400000, guid: 06e2b037dd36ff74290fbe67c3f22616, type: 2}
+    dialogueEntry_: {fileID: 11400000, guid: 0d61cefa38ceeb0419853fba659980b2, type: 2}
+  - id_: 5
+    state_: 0
+    summoningPosition_: {x: 6.47, y: 12.87, z: -10}
+    summoningInfo_: {fileID: 11400000, guid: 6eae7a51025eb41449679efbf5fc59ca, type: 2}
+    dialogueEntry_: {fileID: 11400000, guid: 97beb655bb6edb443946763d8aa6b20c, type: 2}
+  - id_: 6
+    state_: 0
+    summoningPosition_: {x: -26.8, y: 9.19, z: -10}
+    summoningInfo_: {fileID: 11400000, guid: 7fcf9c58e80d14c47aa9d74fc2c01513, type: 2}
+    dialogueEntry_: {fileID: 11400000, guid: 3a6e67564b5cf394fb7119f870ce330b, type: 2}
 --- !u!114 &164645525447100682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,5 +184,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baf06fce2dd24874b96dbbb752645901, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resourceParents_: []
+  resourceParents_:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   minAvailableResources_: 3

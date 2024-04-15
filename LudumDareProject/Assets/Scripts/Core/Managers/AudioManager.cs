@@ -58,13 +58,16 @@ public class AudioManager : MonoBehaviour
     public bool IsCurrentSongPlaying()
     {
         Sound s = musicSongs_[currentSongIndex_];
+
         if (s == null)
         {
             Debug.LogWarning("Sound: " + name + " not found!");
             return false;
         }
 
-        return s.source.isPlaying;
+        float totalDuration = s.clip.length;
+        float currentDuration = s.source.time;
+        return totalDuration - currentDuration > 0.3f;
     }
 
     public void PlayNextSong()
@@ -205,9 +208,9 @@ public class AudioManager : MonoBehaviour
 
     private void Update()
     {
-/*        if(!IsCurrentSongPlaying())
+        if(!IsCurrentSongPlaying())
         {
             PlayNextSong();
-        }*/
+        }
     }
 }
