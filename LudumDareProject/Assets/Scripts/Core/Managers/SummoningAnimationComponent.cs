@@ -172,12 +172,15 @@ public class SummoningAnimationComponent : MonoBehaviour
 
         summonedObject_.DestroyObject();
 
+        GameManager.Instance.EnableInput();
         GameManager.Instance.SetInputMode(EInputMode.InGame);
+
         animationEnded_.Invoke();
     }
 
     public void AddResourceAnimation(int resourceId)
     {
+        GameManager.Instance.DisableInput();
         GameManager.Instance.player_.GetComponent<MovementComponent>().StartPath(resourcesPath_[resourceId].points_);
 
     }
@@ -190,6 +193,7 @@ public class SummoningAnimationComponent : MonoBehaviour
 
     public void GoBackAnimation(int resourceId)
     {
+        GameManager.Instance.DisableInput();
         isGoingBack_ = true;
         GameManager.Instance.player_.GetComponent<MovementComponent>().StartPath(backPath_[resourceId].points_);
     }
@@ -206,7 +210,7 @@ public class SummoningAnimationComponent : MonoBehaviour
         }
         else
         {
-            GameManager.Instance.SetInputMode(EInputMode.Summoning);
+            GameManager.Instance.EnableInput();
             GameObject resource = Instantiate(resourceObjectPrefab_, positionOfReference_.transform);
 
             Sprite resourceSprite = GameManager.Instance.summoningManager_.GetCurrentResourceSprite();
@@ -214,6 +218,8 @@ public class SummoningAnimationComponent : MonoBehaviour
             resourceSummonComp.SetSprite(resourceSprite);
             resourceSummonComp.InitialSetup(resourceSpawnPosition_[GameManager.Instance.summoningManager_.GetCurrentResourceId()]);
             resourcesObjects_.Add(resourceSummonComp);
+
+
         }
     }
 

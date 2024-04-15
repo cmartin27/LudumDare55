@@ -69,4 +69,17 @@ public class GameManager : MonoBehaviour
                 break;
         }
     }
+
+    public void DisableInput()
+    {
+        player_.GetComponent<PlayerInput>().DeactivateInput();
+        
+    }
+
+    public void EnableInput()
+    {
+        player_.GetComponent<PlayerInput>().ActivateInput();
+    }
+
+
 }
