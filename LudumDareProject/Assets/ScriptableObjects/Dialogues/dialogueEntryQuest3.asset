@@ -12,39 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae2fe2f7355e6cb4b9a73773c178a58a, type: 3}
   m_Name: dialogueEntryQuest3
   m_EditorClassIdentifier: 
-  questNotInitialized: 'Dear student
+  questNotInitialized_: "Desde que mi hermana se fue a las monta\xF1as \na hacerse
+    un castillo de hielo\nMe siento muy sola\nOjala tener a un amigo\nque me recordara
+    a ella\n"
+  questInProgress_: "Elsa quieres hacer un mu\xF1eco de nieve\t"
+  questAfterSuccess_: Olaf estas vivo!
+  questAfterFail_: "Eso no es un mu\xF1eco de nieve :("
+  questFinished_: 'Gracias por darle vida a olaf
 
-    This is your last test to obtain the title
-    of
-
-    NOVICE WIZARD IN THE SUMMONING ARTS
-
-    Fetch the ingredients that are
-    in front of me
-
-    And perform the summoning correctly
-
-    Good luck!'
-  questInProgress: 'Pick the ingredients in front of me to perform the summoning
-
-    To
-    pick an ingredient, press the Space key
-
-    If you have all the ingredients,
-    you can start the summoning
-
-'
-  questAfterSummoning: 'Congratulations! That was a magnific example
-
-    As you
-    already know, after graduating from magic school
-
-    you are assigned to a remote
-    village to help the local population
-
-    Make their wishes come true and be
-    wise!'
-  questFinished: 'Go to your assigned village and begin your career as a summoner
-
-    Just
-    go right past the door down there'
+    Aunque podrias haberlo hecho
+    menos pesao'

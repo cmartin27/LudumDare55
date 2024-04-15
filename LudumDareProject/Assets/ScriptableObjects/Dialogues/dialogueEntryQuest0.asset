@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ae2fe2f7355e6cb4b9a73773c178a58a, type: 3}
-  m_Name: dialogueEntryQuest5
+  m_Name: dialogueEntryQuest0
   m_EditorClassIdentifier: 
   questNotInitialized: 'Dear student
 
