@@ -50,12 +50,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3420583138258741060, guid: dc1429ea87c78454cacc108eeffc9617, type: 3}
       propertyPath: m_Name
-      value: FlowerSummon Variant
+      value: FlowerSummon
       objectReference: {fileID: 0}
     - target: {fileID: 6186301079922787766, guid: dc1429ea87c78454cacc108eeffc9617, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -1377241155, guid: 40a7903d229fc4f48b54b5769d2a64ab, type: 3}
+      objectReference: {fileID: 269137330, guid: 40a7903d229fc4f48b54b5769d2a64ab, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

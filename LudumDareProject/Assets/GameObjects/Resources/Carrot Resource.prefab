@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3026313742372854600, guid: b2de098f04ff62e4295ca0e96030ead3, type: 3}
       propertyPath: m_Name
-      value: Carrot
+      value: Carrot Resource
       objectReference: {fileID: 0}
     - target: {fileID: 4830200921533873736, guid: b2de098f04ff62e4295ca0e96030ead3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -55,7 +55,7 @@ PrefabInstance:
     - target: {fileID: 6729417987567545598, guid: b2de098f04ff62e4295ca0e96030ead3, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 755582464, guid: 40a7903d229fc4f48b54b5769d2a64ab, type: 3}
+      objectReference: {fileID: -1377241155, guid: 40a7903d229fc4f48b54b5769d2a64ab, type: 3}
     - target: {fileID: 7881253111114446139, guid: b2de098f04ff62e4295ca0e96030ead3, type: 3}
       propertyPath: type_
       value: 6
