@@ -38,6 +38,7 @@ public class SummoningManager : MonoBehaviour
 
     List<EResourceType> selectedResources_;
     QuestInfo currentQuest_;
+    GameObject summonedObject_;
     ESummoningResult currentQuestResult_;
     int currentResources_;
 
@@ -253,7 +254,8 @@ public class SummoningManager : MonoBehaviour
                 break;
             }
         }
-        
+        summonedObject_ = matchingSummonInfo.summoning_;
+
         return matchingSummonInfo == null ? ESummoningResult.Invalid :
             matchingSummonInfo.summoning_ == currentQuest_.summoningInfo_.summoning_ ? ESummoningResult.Succesful : ESummoningResult.Failed;
     }
@@ -281,6 +283,6 @@ public class SummoningManager : MonoBehaviour
 
     public GameObject GetSummonedObject()
     {
-        return currentQuest_.summoningInfo_.summoning_;
+        return summonedObject_;
     }
 }
