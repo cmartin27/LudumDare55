@@ -90,4 +90,12 @@ public class InteractionComponent : MonoBehaviour
         }
     }
 
+    public void OnMenuOpened(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        { 
+            GameManager.Instance.uiManager_.OpenPauseMenu();
+        }
+    }
+
 }

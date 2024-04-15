@@ -93,7 +93,6 @@ public class SummoningManager : MonoBehaviour
             UISelectableResource resourceUI = newResource.GetComponent<UISelectableResource>();
             resourceUI.resourceSelected_.AddListener(SelectResource);
             resourceUI.resourceUnselected_.AddListener(UnselectResource);
-            resourceUI.text_.text = "Resource " + resource.ToString();
             resourceUI.EResourceType_ = resource;
             resourceUI.transform.SetParent(resourcesList_.transform);
             resourcesUIList.Add(resourceUI); 

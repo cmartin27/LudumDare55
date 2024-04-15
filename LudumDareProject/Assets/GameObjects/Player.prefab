@@ -374,6 +374,9 @@ MonoBehaviour:
   movSpeed_: 5
   isMoving_: 0
   direction_: {x: 0, y: 0}
+  pathCompleted_:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &601608917167030538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -447,6 +450,38 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: d960b328-d913-4062-835b-724a6f66bf60
     m_ActionName: Dialogue/Interact[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b001e2b4-61d3-4451-9a47-18fd346fca2c
+    m_ActionName: InGame/DebugSummoningMenu[/Keyboard/l]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3176810213719384599}
+        m_TargetAssemblyTypeName: InteractionComponent, Assembly-CSharp
+        m_MethodName: OnMenuOpened
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 1dfde07d-83de-4b3c-bf97-f6d66db2f898
+    m_ActionName: InGame/OpenMenu[/Keyboard/tab]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f1fa2ba6-5578-4ce2-9c05-a8ae05b19de7
+    m_ActionName: UI/Navigate[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9745267f-194a-463c-a60c-eca3c89dd9eb
+    m_ActionName: UI/Click[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2243788b-ebac-48ac-9bc3-f1383f6ae4ea
+    m_ActionName: Summoning/Continue[/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: InGame
