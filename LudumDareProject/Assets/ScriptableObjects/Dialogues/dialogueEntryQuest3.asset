@@ -12,39 +12,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae2fe2f7355e6cb4b9a73773c178a58a, type: 3}
   m_Name: dialogueEntryQuest3
   m_EditorClassIdentifier: 
-  questNotInitialized: 'Dear student
+  questNotInitialized_: 'Hello stranger.
 
-    This is your last test to obtain the title
-    of
+    Oh you are the new summoner?
 
-    NOVICE WIZARD IN THE SUMMONING ARTS
+    Nice
+    to meet you I am Anna.
 
-    Fetch the ingredients that are
-    in front of me
+    Maybe you can help me.
 
-    And perform the summoning correctly
+    My sister left me to
+    go live in the mountains.
 
-    Good luck!'
-  questInProgress: 'Pick the ingredients in front of me to perform the summoning
+    She made a giant ice castle (don''t tell me how)
 
-    To
-    pick an ingredient, press the Space key
+    Ever
+    since she left, I''ve felt so lonely.
 
-    If you have all the ingredients,
-    you can start the summoning
+    Could you make me something that reminded
+    me of her?'
+  questInProgress_: 'I miss my sister so much.
 
-'
-  questAfterSummoning: 'Congratulations! That was a magnific example
+    If only I could have something
+    that reminded me of her.'
+  questAfterSuccess_: 'What... what is this?
 
-    As you
-    already know, after graduating from magic school
+    A snowman?
 
-    you are assigned to a remote
-    village to help the local population
+    Oh it''s perfect
+    dear summoner!
 
-    Make their wishes come true and be
-    wise!'
-  questFinished: 'Go to your assigned village and begin your career as a summoner
+    But a snowman needs a name.
 
-    Just
-    go right past the door down there'
+    You know what? I''m going
+    to call you Olaf.
+
+    Olaf the snowman.'
+  questAfterFail_: "Thank you for your effort dear summoner.\_\nHowever that does
+    not have anything to do with my sister.\nI wish you could invoke something cold."
+  questFinished_: "Elsa I still miss you.\_\nBut at least with Olaf\nI can wait for
+    your return accompanied."

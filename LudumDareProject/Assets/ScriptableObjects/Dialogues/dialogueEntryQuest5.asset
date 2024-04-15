@@ -12,39 +12,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae2fe2f7355e6cb4b9a73773c178a58a, type: 3}
   m_Name: dialogueEntryQuest5
   m_EditorClassIdentifier: 
-  questNotInitialized: 'Dear student
+  questNotInitialized_: 'Hello fellow soldier.
 
-    This is your last test to obtain the title
-    of
+    Sorry if I am not very talkative.
 
-    NOVICE WIZARD IN THE SUMMONING ARTS
+    I
+    hit my head really bad.
 
-    Fetch the ingredients that are
-    in front of me
+    I need to find something to reduce the inflammation
+    quickly.'
+  questInProgress_: "Soldier. You are back.\nDo you know where I could find \nsomething
+    to reduce my head inflammation?"
+  questAfterSuccess_: 'Oh...
 
-    And perform the summoning correctly
+    A snowman...
 
-    Good luck!'
-  questInProgress: 'Pick the ingredients in front of me to perform the summoning
+    I guess it could technically
+    work?
 
-    To
-    pick an ingredient, press the Space key
+    I would have prefered some ice though.'
+  questAfterFail_: Do you really think that could help me ease the pain?
+  questFinished_: 'Hello soldier.
 
-    If you have all the ingredients,
-    you can start the summoning
+    Thank you for your help before.
 
-'
-  questAfterSummoning: 'Congratulations! That was a magnific example
+    Even
+    if it was a little bit unorthodox
 
-    As you
-    already know, after graduating from magic school
-
-    you are assigned to a remote
-    village to help the local population
-
-    Make their wishes come true and be
-    wise!'
-  questFinished: 'Go to your assigned village and begin your career as a summoner
-
-    Just
-    go right past the door down there'
+    that snow really helped to reduce the
+    inflammation.'

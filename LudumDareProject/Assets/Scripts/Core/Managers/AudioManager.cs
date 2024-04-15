@@ -14,7 +14,7 @@ public class Sound
     public float volume = .75f;
 
     [Range(.1f, 3f)]
-    public float pitch = 1f;
+    public float pitch = 1.0f;
 
     public bool loop = false;
 
@@ -25,8 +25,8 @@ public class Sound
 public class AudioManager : MonoBehaviour
 {
     [Header("Audio Settings")]
-    bool isMusicOn_;
-    bool areSoundEffectsOn_;
+    public bool isMusicOn_;
+    public bool areSoundEffectsOn_;
 
     [Header("Sounds")]
     public List<Sound> soundEffects_;
@@ -37,29 +37,41 @@ public class AudioManager : MonoBehaviour
     public AudioMixerGroup effectsAudioMixerGroup_;
     public AudioMixer audioMixer_;
 
-    // Initialize every sound effect and music track
-    private void Awake()
-    {
-        foreach (Sound s in soundEffects_)
-        {
-            s.source = gameObject.AddComponent<AudioSource>();
-            s.source.outputAudioMixerGroup = effectsAudioMixerGroup_;
-            s.source.clip = s.clip;
-            s.source.loop = s.loop;
-        }
-
-        foreach (Sound s in musicSongs_)
-        {
-            s.source = gameObject.AddComponent<AudioSource>();
-            s.source.outputAudioMixerGroup = musicAudioMixerGroup_;
-            s.source.clip = s.clip;
-            s.source.loop = s.loop;
-        }
-    }
+    private int currentSongIndex_ = 0;
 
     public void PlaySong(string songName)
     {
         Sound s = GetSong(songName);
+        if (s == null)
+        {
+            Debug.LogWarning("Song: " + name + " not found!");
+            return;
+        }
+        if (isMusicOn_)
+        {
+            s.source.volume = s.volume;
+            s.source.pitch = s.pitch;
+            s.source.Play();
+        }
+    }
+
+    public bool IsCurrentSongPlaying()
+    {
+        Sound s = musicSongs_[currentSongIndex_];
+        if (s == null)
+        {
+            Debug.LogWarning("Sound: " + name + " not found!");
+            return false;
+        }
+
+        return s.source.isPlaying;
+    }
+
+    public void PlayNextSong()
+    {
+        currentSongIndex_ = (currentSongIndex_ + 1) % musicSongs_.Count;
+
+        Sound s = musicSongs_[currentSongIndex_];
         if (s == null)
         {
             Debug.LogWarning("Song: " + name + " not found!");
@@ -164,5 +176,38 @@ public class AudioManager : MonoBehaviour
         areSoundEffectsOn_ = activate;
         float volume_value = activate ? 0.0f : -80.0f;
         effectsAudioMixerGroup_.audioMixer.SetFloat("EffectsVolume", volume_value);
+    }
+
+    private void Awake()
+    {
+        foreach (Sound s in soundEffects_)
+        {
+            s.source = gameObject.AddComponent<AudioSource>();
+            s.source.outputAudioMixerGroup = effectsAudioMixerGroup_;
+            s.source.clip = s.clip;
+            s.source.loop = s.loop;
+        }
+
+        foreach (Sound s in musicSongs_)
+        {
+            s.source = gameObject.AddComponent<AudioSource>();
+            s.source.outputAudioMixerGroup = musicAudioMixerGroup_;
+            s.source.clip = s.clip;
+            s.source.loop = s.loop;
+        }
+    }
+
+    private void Start()
+    {
+        currentSongIndex_ = -1;
+        PlayNextSong();
+    }
+
+    private void Update()
+    {
+/*        if(!IsCurrentSongPlaying())
+        {
+            PlayNextSong();
+        }*/
     }
 }

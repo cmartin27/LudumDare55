@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae2fe2f7355e6cb4b9a73773c178a58a, type: 3}
+  m_Name: dialogueEntryQuest6
+  m_EditorClassIdentifier: 
+  questNotInitialized_: 'Hey you!
+
+    Yes you!
+
+    You are the new summoner right?
+
+    Oh
+    please help me. I beg you.
+
+    A curse has fell on me.
+
+    I might not look
+    like it, but I am 26.
+
+    This bloody curse has aged me like milk.
+
+    Do you
+    think you can invoke something to remove the curse?'
+  questInProgress_: 'Summoner please. I beg you.
+
+    Give me something to reverse
+    the curse.
+
+    I don''t want to die so young.'
+  questAfterSuccess_: 'This! This will do it.
+
+    Oh thank you summoner.
+
+    I
+    will drink it as soon as I get home.
+
+    I can''t wait to be young and beautiful
+    again.'
+  questAfterFail_: 'IS THIS A JOKE TO YOU?
+
+    Sorry.
+
+    That was inappropiate.
+
+    I
+    am just... so tired of being old.'
+  questFinished_: 'I''ll drink the potion when I get home.
+
+    I can''t wait to
+    be young and beautiful again.
+
+    Hey that''s kind of poetic.
+
+    Maybe someone
+    should write a song like that.'

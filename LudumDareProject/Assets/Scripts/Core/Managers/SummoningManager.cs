@@ -186,6 +186,8 @@ public class SummoningManager : MonoBehaviour
     {
         Clear();
 
+        GameManager.Instance.SetInputMode(EInputMode.Dialogue);
+
         if (currentQuestResult_ == ESummoningResult.Succesful)
         {
             GameManager.Instance.questManager_.QuestSuccessful();
@@ -253,7 +255,14 @@ public class SummoningManager : MonoBehaviour
                 break;
             }
         }
-        summonedObject_ = matchingSummonInfo.summoning_;
+        if(matchingSummonInfo != null)
+        {
+            summonedObject_ = matchingSummonInfo.summoning_;
+        }
+        else
+        {
+            Debug.Log("No summoning info match found!");
+        }
 
         return matchingSummonInfo == null ? ESummoningResult.Invalid :
             matchingSummonInfo.summoning_ == currentQuest_.summoningInfo_.summoning_ ? ESummoningResult.Succesful : ESummoningResult.Failed;
