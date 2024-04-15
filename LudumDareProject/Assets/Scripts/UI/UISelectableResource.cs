@@ -9,8 +9,7 @@ using UnityEngine.UI;
 public class UISelectableResource : MonoBehaviour
 {
     public Button button_;
-    public TMP_Text text_;
-
+    public bool setSelectedColor_ = true;
     public Color selectedColor_;
     Color unselectedColor_;
 
@@ -27,9 +26,11 @@ public class UISelectableResource : MonoBehaviour
 
     void SelectResource()
     {
-        var newColors = button_.colors;
-        newColors.normalColor = selectedColor_;
-        button_.colors = newColors;
+        if(setSelectedColor_){
+            var newColors = button_.colors;
+            newColors.normalColor = selectedColor_;
+            button_.colors = newColors;
+        }
 
         resourceSelected_.Invoke(EResourceType_);
 
@@ -37,9 +38,13 @@ public class UISelectableResource : MonoBehaviour
 
     void UnselectResource()
     {
-        var newColors = button_.colors;
-        newColors.normalColor = unselectedColor_;
-        button_.colors = newColors;
+        if (setSelectedColor_)
+        {
+            var newColors = button_.colors;
+            newColors.normalColor = unselectedColor_;
+            button_.colors = newColors;
+        }
+
 
         resourceUnselected_.Invoke(EResourceType_);
     }

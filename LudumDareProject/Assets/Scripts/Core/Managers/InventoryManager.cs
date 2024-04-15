@@ -36,5 +36,16 @@ public class InventoryManager : MonoBehaviour
         resources.Clear(); 
     }
 
+    public int GetResourceAmount(EResourceType resource) {
+
+        int i = 0;
+
+       foreach(EResourceType type in resources) {
+            if(type == resource) i++;
+       }
+
+       return i;
+    }
+
 
 }

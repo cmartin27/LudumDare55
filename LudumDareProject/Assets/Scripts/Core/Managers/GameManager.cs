@@ -17,6 +17,7 @@ public enum EInputMode
 [RequireComponent(typeof(InventoryManager))]
 [RequireComponent(typeof(QuestManager))]
 [RequireComponent(typeof(ResourceManager))]
+[RequireComponent(typeof(UIManager))]
 public class GameManager : MonoBehaviour
 {
     private static GameManager instance_ = null;
@@ -31,6 +32,8 @@ public class GameManager : MonoBehaviour
     public QuestManager questManager_ { get; private set; }
     public ResourceManager resourceManager_ { get; private set; }
     public SummoningManager summoningManager_;
+    public UIManager uiManager_;
+
     public GameObject player_;
     public GameObject mainCamera_;
 
@@ -46,7 +49,7 @@ public class GameManager : MonoBehaviour
         inventoryManager_ = GetComponent<InventoryManager>();
         questManager_ = GetComponent<QuestManager>();
         resourceManager_ = GetComponent<ResourceManager>();
-
+        uiManager_ = GetComponent<UIManager>();
     }
 
     public void SetInputMode(EInputMode mode)
