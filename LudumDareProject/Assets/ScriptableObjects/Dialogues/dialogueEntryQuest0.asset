@@ -12,39 +12,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae2fe2f7355e6cb4b9a73773c178a58a, type: 3}
   m_Name: dialogueEntryQuest0
   m_EditorClassIdentifier: 
-  questNotInitialized: 'Dear student
+  questNotInitialized_: "Oh you must be the new summoner apprentice.\_\nNice to meet
+    you I am Pierre.\nActually, I might be in need of your service.\nThere is this
+    girl that I like, Anna.\nAnd I want to impress her somehow.\nI would like to
+    gift her\_something beautiful."
+  questInProgress_: "Oh I cannot think of anything to gift Anna.\nIf only I had something\_truly
+    beautiful\_to impress her."
+  questAfterSuccess_: 'A rose?
 
-    This is your last test to obtain the title
-    of
+    Oh it is truly beautiful.
 
-    NOVICE WIZARD IN THE SUMMONING ARTS
+    So pure and...
+    perfect.
 
-    Fetch the ingredients that are
-    in front of me
+    Yes. This will impress her.
 
-    And perform the summoning correctly
+    Thank you apprentice!'
+  questAfterFail_: 'Do you really consider that beautiful?
 
-    Good luck!'
-  questInProgress: 'Pick the ingredients in front of me to perform the summoning
+    How am I going to
+    impress Anna with that?'
+  questFinished_: 'Hey, thank you again for conjuring that flower.
 
-    To
-    pick an ingredient, press the Space key
-
-    If you have all the ingredients,
-    you can start the summoning
-
-'
-  questAfterSummoning: 'Congratulations! That was a magnific example
-
-    As you
-    already know, after graduating from magic school
-
-    you are assigned to a remote
-    village to help the local population
-
-    Make their wishes come true and be
-    wise!'
-  questFinished: 'Go to your assigned village and begin your career as a summoner
-
-    Just
-    go right past the door down there'
+    She will
+    be so impressed with it...'

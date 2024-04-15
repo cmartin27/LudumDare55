@@ -12,39 +12,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae2fe2f7355e6cb4b9a73773c178a58a, type: 3}
   m_Name: dialogueEntryQuest2
   m_EditorClassIdentifier: 
-  questNotInitialized: 'Dear student
+  questNotInitialized_: 'Sorry I''m not in the mood right now.
 
-    This is your last test to obtain the title
-    of
+    You see, here
+    lies Edward.
 
-    NOVICE WIZARD IN THE SUMMONING ARTS
+    We were ambushed by a group of goblins.
 
-    Fetch the ingredients that are
-    in front of me
+    it was all so
+    fast.
 
-    And perform the summoning correctly
+    I couln''t even say goodbye to him.
 
-    Good luck!'
-  questInProgress: 'Pick the ingredients in front of me to perform the summoning
+    I wish there was a way I
+    could talk to him.
 
-    To
-    pick an ingredient, press the Space key
+    At least one last time.'
+  questInProgress_: 'Oh, [name]. I miss you so much.
 
-    If you have all the ingredients,
-    you can start the summoning
+    If only I could see your
+    face.
 
-'
-  questAfterSummoning: 'Congratulations! That was a magnific example
+    And talk to you.
 
-    As you
-    already know, after graduating from magic school
+    One last time.'
+  questAfterSuccess_: 'Oh, Edward. It is you!
 
-    you are assigned to a remote
-    village to help the local population
+    I''ve missed you so much.
 
-    Make their wishes come true and be
-    wise!'
-  questFinished: 'Go to your assigned village and begin your career as a summoner
+    I
+    never got the chance to say
 
-    Just
-    go right past the door down there'
+    I LOVE YOU EDWARD
+
+    FROM THE DEEPEST OF MY
+    HEART.
+
+    And I will always carry you with me
+
+    In my memories
+
+    Until
+    we are united again in death.'
+  questAfterFail_: "What are you doing?\nIf you are not going to help, \nat least
+    make your summonings elsewhere."
+  questFinished_: 'Thank you for helping me.
+
+    At least I had a chance to express
+    to him
+
+    how much he meant to me.'

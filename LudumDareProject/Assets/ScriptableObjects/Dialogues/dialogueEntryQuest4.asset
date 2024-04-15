@@ -12,39 +12,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae2fe2f7355e6cb4b9a73773c178a58a, type: 3}
   m_Name: dialogueEntryQuest4
   m_EditorClassIdentifier: 
-  questNotInitialized: 'Dear student
+  questNotInitialized_: "Help! Help!\nOh my bees, my poor bees.\nThey don't want
+    to get out of the hive.\_\nI don't know why!\nMaybe they are depressed bees?\nDo
+    you think that you could invoke something\nto make my bees happier?"
+  questInProgress_: 'Have you come up with something to help my bees?
 
-    This is your last test to obtain the title
-    of
+    They are
+    very sad,
 
-    NOVICE WIZARD IN THE SUMMONING ARTS
+    if only I had something to cherish them.'
+  questAfterSuccess_: 'A flower obviously!
 
-    Fetch the ingredients that are
-    in front of me
+    What else would a bee want?
 
-    And perform the summoning correctly
+    They
+    look so happy now!
 
-    Good luck!'
-  questInProgress: 'Pick the ingredients in front of me to perform the summoning
+    Thank you sir, from the bottom of my heart.'
+  questAfterFail_: 'Oh, I don''t think that is working.
 
-    To
-    pick an ingredient, press the Space key
+    The bees are not much
+    more animated.'
+  questFinished_: 'The bees are so happy now.
 
-    If you have all the ingredients,
-    you can start the summoning
-
-'
-  questAfterSummoning: 'Congratulations! That was a magnific example
-
-    As you
-    already know, after graduating from magic school
-
-    you are assigned to a remote
-    village to help the local population
-
-    Make their wishes come true and be
-    wise!'
-  questFinished: 'Go to your assigned village and begin your career as a summoner
-
-    Just
-    go right past the door down there'
+    I''m sure this year they will
+    produce the best honey yet.'

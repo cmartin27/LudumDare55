@@ -12,13 +12,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae2fe2f7355e6cb4b9a73773c178a58a, type: 3}
   m_Name: dialogueEntryQuest3
   m_EditorClassIdentifier: 
-  questNotInitialized_: "Desde que mi hermana se fue a las monta\xF1as \na hacerse
-    un castillo de hielo\nMe siento muy sola\nOjala tener a un amigo\nque me recordara
-    a ella\n"
-  questInProgress_: "Elsa quieres hacer un mu\xF1eco de nieve\t"
-  questAfterSuccess_: Olaf estas vivo!
-  questAfterFail_: "Eso no es un mu\xF1eco de nieve :("
-  questFinished_: 'Gracias por darle vida a olaf
+  questNotInitialized_: 'Hello stranger.
 
-    Aunque podrias haberlo hecho
-    menos pesao'
+    Oh you are the new summoner?
+
+    Nice
+    to meet you I am Anna.
+
+    Maybe you can help me.
+
+    My sister left me to
+    go live in the mountains.
+
+    She made a giant ice castle (don''t tell me how)
+
+    Ever
+    since she left, I''ve felt so lonely.
+
+    Could you make me something that reminded
+    me of her?'
+  questInProgress_: 'I miss my sister so much.
+
+    If only I could have something
+    that reminded me of her.'
+  questAfterSuccess_: 'What... what is this?
+
+    A snowman?
+
+    Oh it''s perfect
+    dear summoner!
+
+    But a snowman needs a name.
+
+    You know what? I''m going
+    to call you Olaf.
+
+    Olaf the snowman.'
+  questAfterFail_: "Thank you for your effort dear summoner.\_\nHowever that does
+    not have anything to do with my sister.\nI wish you could invoke something cold."
+  questFinished_: "Elsa I still miss you.\_\nBut at least with Olaf\nI can wait for
+    your return accompanied."

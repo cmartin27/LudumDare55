@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae2fe2f7355e6cb4b9a73773c178a58a, type: 3}
+  m_Name: dialogueEntryQuest5
+  m_EditorClassIdentifier: 
+  questNotInitialized_: 'Hello fellow soldier.
+
+    Sorry if I am not very talkative.
+
+    I
+    hit my head really bad.
+
+    I need to find something to reduce the inflammation
+    quickly.'
+  questInProgress_: "Soldier. You are back.\nDo you know where I could find \nsomething
+    to reduce my head inflammation?"
+  questAfterSuccess_: 'Oh...
+
+    A snowman...
+
+    I guess it could technically
+    work?
+
+    I would have prefered some ice though.'
+  questAfterFail_: Do you really think that could help me ease the pain?
+  questFinished_: 'Hello soldier.
+
+    Thank you for your help before.
+
+    Even
+    if it was a little bit unorthodox
+
+    that snow really helped to reduce the
+    inflammation.'
