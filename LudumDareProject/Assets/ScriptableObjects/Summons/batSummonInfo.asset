@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: batSummonInfo
   m_EditorClassIdentifier: 
   name_: Bat!
-  description_: Summons a bat!
+  description_: A creature of the night
   resources_: 0000000001000000020000000300000006000000
   resourceAmounts_: 0100000001000000010000000100000001000000
   summoning_: {fileID: 1662632614670312692, guid: 2a3f8160189602a479c8744e4cf1a4c7, type: 3}

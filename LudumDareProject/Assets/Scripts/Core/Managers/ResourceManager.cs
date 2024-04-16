@@ -71,6 +71,7 @@ public class ResourceManager : MonoBehaviour
 
     public Sprite GetResourceSprite(EResourceType resourceType)
     {
+
         return resources_[resourceType][0].GetComponent<SpriteRenderer>().sprite;
     }
 }

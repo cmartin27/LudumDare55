@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: potionSummonInfo
   m_EditorClassIdentifier: 
   name_: Potion
-  description_: Summons a potion!
+  description_: 'Hyaluronic acid?
+
+'
   resources_: 000000000100000006000000
   resourceAmounts_: 010000000100000003000000
   summoning_: {fileID: 178624816645308725, guid: 8665d2c5a8b41c848a8560ca60116edf, type: 3}

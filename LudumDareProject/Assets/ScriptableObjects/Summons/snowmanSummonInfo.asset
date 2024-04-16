@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: snowmanSummonInfo
   m_EditorClassIdentifier: 
   name_: Snowman!
-  description_: Summons a snowman!
+  description_: The coolest of all friends
   resources_: 010000000400000006000000
   resourceAmounts_: 020000000200000001000000
   summoning_: {fileID: 1196297345077525341, guid: 83e40c2022957e748b8a320f1c96e203, type: 3}

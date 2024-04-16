@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: weaponSummonInfo
   m_EditorClassIdentifier: 
   name_: Weapon!
-  description_: Summons a weapon!
+  description_: Something fit for a king
   resources_: 0400000005000000
   resourceAmounts_: 0200000003000000
   summoning_: {fileID: 875341515860232455, guid: baad9a99575f7894cab11cfb0a8d877f, type: 3}

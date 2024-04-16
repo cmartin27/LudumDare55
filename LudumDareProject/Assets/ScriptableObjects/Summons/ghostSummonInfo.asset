@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ghostSummonInfo
   m_EditorClassIdentifier: 
   name_: Ghost!
-  description_: Summons a ghost!
+  description_: An eldritch undead
   resources_: 00000000010000000200000003000000
   resourceAmounts_: 01000000010000000100000002000000
   summoning_: {fileID: 700497964887083885, guid: dec32ae5132e9224e83928f5394d4b96, type: 3}
