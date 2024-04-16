@@ -92,6 +92,7 @@ public class SummoningManager : MonoBehaviour
             GameObject newResource = GameObject.Instantiate(selectableResourcePrefab_);
             UISelectableResource resourceUI = newResource.GetComponent<UISelectableResource>();
             resourceUI.resourceSelected_.AddListener(SelectResource);
+            resourceUI.sprite_.sprite = GameManager.Instance.resourceManager_.GetResourceSprite(resource);
             resourceUI.resourceUnselected_.AddListener(UnselectResource);
             resourceUI.EResourceType_ = resource;
             resourceUI.transform.SetParent(resourcesList_.transform);
@@ -99,7 +100,7 @@ public class SummoningManager : MonoBehaviour
         }
 
         // Set buttons navigation
-        int resourcesCount = resourcesUIList.Count;
+/*        int resourcesCount = resourcesUIList.Count;
         for (int i = 0; i < resourcesCount; ++i)
         {
             var navigation = resourcesUIList[i].button_.navigation;
@@ -113,7 +114,7 @@ public class SummoningManager : MonoBehaviour
             navigation.selectOnDown = resourcesUIList[downButtonIdx].button_;
 
             resourcesUIList[i].button_.navigation = navigation;
-        }
+        }*/
 
     }
 
@@ -150,8 +151,8 @@ public class SummoningManager : MonoBehaviour
 
         for(int i = 0; i < currentSelectedResources; ++i)
         {
-            string resourceName = "Resource " + selectedResources_[i].ToString();
-            selectedResourcesList.transform.GetChild(i).GetComponent<TMP_Text>().text = resourceName;
+            Sprite resourceSprite = GameManager.Instance.resourceManager_.GetResourceSprite(selectedResources_[i]);
+            selectedResourcesList.transform.GetChild(i).GetChild(0).GetComponent<Image>().sprite = resourceSprite;
         }
 
 
