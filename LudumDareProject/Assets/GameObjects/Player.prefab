@@ -613,7 +613,19 @@ MonoBehaviour:
     m_ActionId: 2243788b-ebac-48ac-9bc3-f1383f6ae4ea
     m_ActionName: Summoning/Continue[/Keyboard/space]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3176810213719384599}
+        m_TargetAssemblyTypeName: InteractionComponent, Assembly-CSharp
+        m_MethodName: OnMenuOpened
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 1dfde07d-83de-4b3c-bf97-f6d66db2f898
     m_ActionName: InGame/OpenMenu[/Keyboard/tab]
   m_NeverAutoSwitchControlSchemes: 0

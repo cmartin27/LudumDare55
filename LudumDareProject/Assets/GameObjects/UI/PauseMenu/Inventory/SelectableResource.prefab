@@ -147,6 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button_: {fileID: 8828251995778234769}
+  sprite_: {fileID: 5124305263760883908}
   setSelectedColor_: 0
   selectedColor_: {r: 1, g: 1, b: 1, a: 0}
   EResourceType_: 0

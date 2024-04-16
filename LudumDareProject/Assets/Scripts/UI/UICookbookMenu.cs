@@ -85,6 +85,8 @@ public class UICookbookMenu : MonoBehaviour
     public void OpenMenu()
     {
         recipeList_.transform.GetChild(0).GetComponent<Button>().Select();
+        recipeList_.transform.GetChild(0).GetComponent<Button>().onClick.Invoke();
+
     }
 
 }
