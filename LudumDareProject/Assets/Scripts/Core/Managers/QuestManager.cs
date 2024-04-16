@@ -86,7 +86,7 @@ public class QuestManager : MonoBehaviour
                 quest.state_ = EQuestState.InProgress;
                 break;
             case EQuestState.InProgress:
-                GameManager.Instance.SetInputMode(EInputMode.Dialogue);
+                GameManager.Instance.SetInputMode(EInputMode.UI);
                 GameManager.Instance.player_.GetComponent<PlayerComponent>().ShowSummoningDialogue();
                 break;
             case EQuestState.AfterSuccessfulAttempt:

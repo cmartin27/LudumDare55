@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(MovementComponent))]
@@ -10,18 +11,13 @@ public class PlayerComponent : MonoBehaviour
     [SerializeField]
     GameObject summoningDialogue_;
 
-    public void OnInteract(InputAction.CallbackContext context)
-    {
-        if (context.performed && summoningDialogue_.activeSelf)
-        {
-            StartSummoning();
-            summoningDialogue_.SetActive(false);
-        }
-    }
+    [SerializeField]
+    GameObject confirmButton_;
 
     public void ShowSummoningDialogue()
     {
         summoningDialogue_.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(confirmButton_);
     }
 
     public void HideSummoningDialogue()
@@ -34,26 +30,15 @@ public class PlayerComponent : MonoBehaviour
         GameManager.Instance.player_ = gameObject;
     }
 
-    private void Update()
+    public void ConfirmSummoning()
     {
-        if(summoningDialogue_.activeSelf)
-        {
-            if(Input.GetKeyDown(KeyCode.K))
-            {
-                HideSummoningDialogue();
-                GameManager.Instance.questManager_.StartSummoning();
-            }
-            else if(Input.GetKeyDown(KeyCode.M))
-            {
-                HideSummoningDialogue();
-                GameManager.Instance.SetInputMode(EInputMode.InGame);
-            }
-        }
+        HideSummoningDialogue();
+        GameManager.Instance.questManager_.StartSummoning();
     }
 
-    private void StartSummoning()
+    public void CancelSummoning()
     {
-        // start summon manager
-
+        HideSummoningDialogue();
+        GameManager.Instance.SetInputMode(EInputMode.InGame);
     }
 }
