@@ -103,7 +103,15 @@ public class UIInventoryMenu : MonoBehaviour
 
         SetButtonNavigation(newResourcesList);
         confirmationDialog_.SetActive(false);
-        newResourcesList[0].Select();
+
+        if(newResourcesList.Count > 0)
+        {
+            newResourcesList[0].Select();
+        }
+        else
+        {
+            inventoryButton_.Select();
+        }
 
     }
 

@@ -25,6 +25,7 @@ public class InventoryManager : MonoBehaviour
 
     public bool UseResource(EResourceType resource) 
     {
+        GameManager.Instance.resourceManager_.ReplenishResources();
         return resources.Remove(resource);
     }
 

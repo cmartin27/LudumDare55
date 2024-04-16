@@ -53,7 +53,7 @@ public class ResourceManager : MonoBehaviour
         }
     }
 
-    private void ReplenishResources()
+    public void ReplenishResources()
     {
         foreach(List<ResourceComponent> resources in resources_.Values) 
         {
