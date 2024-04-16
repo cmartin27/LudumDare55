@@ -4,7 +4,6 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using static UnityEditor.Progress;
 
 // TODO: Create menu interface
 public class UIInventoryMenu : MonoBehaviour
